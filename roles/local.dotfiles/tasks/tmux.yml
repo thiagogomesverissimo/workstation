@@ -1,0 +1,21 @@
+- name: Install tmux
+  apt:
+    name: tmux
+    state: latest 
+    update_cache: yes
+
+- name: tmuxconf
+  become_user: "{{dotfiles_user}}"
+  template: 
+    src: templates/tmux.conf
+    dest: "{{ dotfiles_home }}/.tmux.conf"
+    mode: 0600
+
+- name: mytmux
+  become_user: "{{ dotfiles_user}}"
+  template: 
+    src: templates/mytmux.sh
+    dest: "{{ dotfiles_home }}/.mytmux.sh"
+    mode: 0600
+
+

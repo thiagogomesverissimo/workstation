@@ -1,0 +1,47 @@
+export EDITOR=vim
+export BROWSER="/usr/bin/google-chrome"
+export PATH="$HOME/.composer/vendor/bin/:$PATH"
+export PATH="$HOME/.bin/:$PATH"
+
+export FZF_DEFAULT_COMMAND='fd --type f'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+export POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+export POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status php_version time)
+
+# alias
+alias mytmux='bash ~/.mytmux.sh'
+alias killmytmux='tmux kill-session -t mytmux'
+
+alias sf='php bin/console'
+
+# tmux: o primiero terminal é sempre mytmux. O segundo é normal.
+if tmux ls 2>/dev/null | grep -q attached ; then
+    echo ""
+else
+    #echo -n "Vamos usar tmux hoje (y/n)? "
+    #read answer
+    #if echo "$answer" | grep -iq "^y"
+    #then 
+        if [ -f "/home/thiago/.mytmux.sh" ]
+        then
+            mytmux
+        else
+            tmux
+        fi
+    #else
+    #    echo "que feio hein!..."
+    #fi
+fi
+
+export SDKMAN_DIR="/home/thiago/.sdkman"
+[[ -s "/home/thiago/.sdkman/bin/sdkman-init.sh" ]] && source "/home/thiago/.sdkman/bin/sdkman-init.sh"
+
+if [ -d /etc/profile.d ]; then
+  for i in /etc/profile.d/*.sh; do
+    if [ -r $i ]; then
+      . $i
+    fi
+  done
+  unset i
+fi

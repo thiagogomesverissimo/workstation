@@ -1,0 +1,14 @@
+[user]
+	name = Thiago Gomes Verissimo
+	email = thiago.verissimo@usp.br
+[color]
+	ui = true
+	interactive = auto
+[core]
+	pager = less
+[alias]
+	l = log --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
+	ll = log --stat --abbrev-commit
+	s = status
+	cm = commit -m
+	a = add

@@ -1,0 +1,285 @@
+---
+- name: provision
+  become: yes
+#  hosts: vagrant
+  hosts: localhost
+
+  vars:
+
+    # global vars
+    dotfiles_user: thiago
+    dotfiles_home: /home/thiago
+
+  tasks:
+
+    # Configuração do timezone são paulo
+    - include_role:
+        name: adriagalin.timezone
+      vars:
+        ag_timezone: 'America/Sao_Paulo'
+
+    # locales como pt-br
+    - include_role:
+        name: infOpen.locales
+      vars:
+        locales_to_configure:
+          - name: 'en_US.UTF-8'
+            modifier: 'UTF-8'
+          - name: 'pt_BR.UTF-8'
+            modifier: 'UTF-8'
+        locales_defaults:
+          LANG: 'pt_BR.UTF-8'
+          LC_CTYPE: 'pt_BR.UTF-8'
+          LANGUAGE: 'pt_BR.UTF-8'
+
+    # ntp
+    - include_role:
+        name: ontic.ntp
+      vars:
+        ntp_timezone: 'America/Sao_Paulo'
+        ntp_servers:
+          - 'a.st1.ntp.br'
+          - 'b.st1.ntp.br'
+
+    # mysql
+    - include_role:
+        name: geerlingguy.mysql
+      vars:
+        mysql_root_username: root
+        mysql_root_password: master
+        mysql_bind_address: '*'
+        mysql_users:
+          - name: master
+            host: "%"
+            password: master
+            priv: "*.*:ALL"
+
+    # nodejs
+    - include_role:
+        name: geerlingguy.nodejs
+      vars:
+        nodejs_version: "10.x"
+        nodejs_install_npm_user: "{{ dotfiles_user }}"
+        nodejs_npm_global_packages:
+          - name: yo
+          - name: reveal
+          - name: prez
+          - name: generator-jhipster
+          - name: gulp-cli
+          - name: bower
+          - name: generator-webapp
+
+    # firewall
+    - include_role:
+        name: geerlingguy.firewall
+      vars:
+        firewall_allowed_tcp_ports:
+          - "22"
+          - "80"
+          - "3306"
+          - "5432"
+
+    # postgresql
+    - include_role:
+        name: geerlingguy.postgresql
+      vars:
+        postgresql_locales:
+          - 'pt_BR.UTF-8'
+        postgresql_users:
+          - name: master
+            password: 'master'
+            encrypted: True
+            role_attr_flags: SUPERUSER
+            db: template1
+            port: 5432
+
+    # docker
+    - include_role:
+        name: geerlingguy.docker
+      vars:
+        docker_compose_version: 1.21.2
+        docker_users:
+          - "{{dotfiles_user}}"
+
+    # php-versions
+    - include_role:
+        name: geerlingguy.php-versions
+      vars:
+        php_version: '7.2'
+
+    # php
+    - include_role:
+        name: geerlingguy.php
+      vars:
+        php_enable_webserver: false
+        php_default_version_debian: '7.2'
+        php_date_timezone: "America/Sao_Paulo"
+        php_packages:
+          - 'php7.2'
+          - 'php7.2-cli'
+          - 'php7.2-common'
+          - 'php7.2-gd'
+          - 'php7.2-mbstring'
+          - 'php7.2-intl'
+          - 'php7.2-xml'
+          - 'php7.2-curl'
+          - 'php7.2-ldap'
+          - 'php7.2-bcmath'
+          - 'php7.2-pgsql'
+          - 'php7.2-mysql'
+          - 'php7.2-sqlite3'
+          - 'php7.2-sybase'
+        php_conf_paths:
+          - /etc/php/{{ php_default_version_debian }}/fpm
+          - /etc/php/{{ php_default_version_debian }}/apache2
+          - /etc/php/{{ php_default_version_debian }}/cli
+        php_extension_conf_paths:
+          - /etc/php/{{ php_default_version_debian }}/fpm/conf.d
+          - /etc/php/{{ php_default_version_debian }}/apache2/conf.d
+          - /etc/php/{{ php_default_version_debian }}/cli/conf.d
+
+    # drush
+    - include_role:
+        name: geerlingguy.drush
+      vars:
+        drush_launcher_version: 0.6.0
+
+    # composer
+    - include_role:
+        name: geerlingguy.composer
+      vars:
+        composer_keep_updated: False
+        composer_global_packages:
+          - name: squizlabs/php_codesniffer 
+          - name: drupal/coder
+          - name: dealerdirect/phpcodesniffer-composer-installer
+          - name: phpunit/phpunit
+          - name: friendsofphp/php-cs-fixer
+        composer_home_owner: "{{dotfiles_user}}"
+        composer_home_group: "{{dotfiles_user}}"
+        composer_project_path: "{{dotfiles_user}}/.composer/vendor/bin/"
+
+    # drupal-console
+    - include_role:
+        name: geerlingguy.drupal-console
+
+    # phpcs
+    - include_role:
+        name: ansible-role-phpcs
+      vars:
+        phpcs_config_set:
+          - 'encoding utf-8'
+          - 'colors 1'
+          - 'report_width 120'
+          - 'tab_width 4'
+          - 'installed_paths ~/.composer/vendor/drupal/coder/coder_sniffer'
+        phpcs_user: "{{dotfiles_user}}"
+
+    # pip
+    - include_role:
+        name: geerlingguy.pip
+      vars:
+        pip_install_packages:
+          - virtualenv
+          - goobook
+          - numpy
+          - pandas
+          - ipython
+          - jupyter
+          - matplotlib
+
+    # oh-my-zsh
+    - include_role:
+        name: vaulttec.zsh
+      vars:
+        zsh_users:
+         - "{{dotfiles_user}}"
+        zsh_ohmy_theme: "powerlevel9k/powerlevel9k"
+        zsh_ohmy_auto_update: true
+        zsh_ohmy_plugins:
+          - git
+          - git-flow
+          - docker
+          - zsh-syntax-highlighting
+          - zsh-autosuggestions
+          - pass
+          - Composer
+          - tmux
+          - vagrant
+          - pip
+          - phpunit
+          - git-prompt
+        zsh_ohmy_custom_themes:
+          - name: powerlevel9k
+            repo: "https://github.com/bhilburn/powerlevel9k.git"
+          - name: spaceship
+            repo: "https://github.com/denysdovhan/spaceship-prompt.git"
+
+    # vim
+    - include_role:
+        name: mmacia.vim
+      vars:
+        vim_env: user
+        vim_users:
+          - "{{dotfiles_user}}"
+        vimrc_recommended: false
+        vim_plugins:
+          - 'mattn/emmet-vim'
+          - 'scrooloose/nerdtree'
+          - 'adoy/vim-php-refactoring-toolbox'
+          - 'stephpy/vim-php-cs-fixer'
+          - 'sheerun/vim-polyglot'
+          - 'Raimondi/delimitMate'
+          - 'vim-scripts/MatchTag'
+          - 'godlygeek/tabular'
+          - 'majutsushi/tagbar'
+          - 'editorconfig/editorconfig-vim'
+          - 'altercation/vim-colors-solarized'
+          - 'phpactor/phpactor'
+          - 'artur-shaik/vim-javacomplete2'
+          - 'airblade/vim-rooter'
+
+    # java
+    - include_role:
+        name: geerlingguy.java
+
+    # R
+    - include_role:
+        name: oefenweb.r
+      vars:
+        r_install_dev: true
+        r_install:
+          - "r-recommended"
+        r_packages:
+          - name: dplyr
+          - name: "davidcarslaw/openair"
+            type: github
+
+    # rbenv
+    - include_role:
+        name: zzet.rbenv
+      vars:
+        rbenv:
+          env: user
+          version: v1.0.0
+          default_ruby: 2.5.1
+          rubies:
+            - version: 2.4.2
+            - version: 2.5.1
+        rbenv_users:
+         - "{{ dotfiles_user }}"
+
+    # vim spell
+    - include_role:
+        name: uspdev.vimspell
+      vars:
+        vimspell_home: "{{dotfiles_home}}"
+        vimspell_user: "{{dotfiles_user}}"
+        vimspell_languages:
+          - pt
+          - es
+          - en
+
+    # php-versions
+    - include_role:
+        name: local.dotfiles

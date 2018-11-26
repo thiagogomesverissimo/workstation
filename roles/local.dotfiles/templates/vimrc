@@ -1,0 +1,70 @@
+" Meus atalhos:
+set pastetoggle=<F2>
+map <F3> :let &colorcolumn=join(range(81,999),",")<CR>
+map <F4> :let &colorcolumn=join(range(0,0),",")<CR>
+map <F5> :set nonumber <CR>
+nnoremap <F8> :set list!<CR>
+set term=screen-256color
+
+" identificação dos caracteres especiais
+set list
+set listchars+=eol:¬,tab:»\ \,trail:§
+
+let mapleader = ','
+
+" Identifica tipos de arquivos
+syntax on
+
+" expandtab converte tab em espaço
+set expandtab
+
+" mostra tabs com 4 espaços
+set tabstop=4
+
+" Espaços na identação
+set shiftwidth=4
+set softtabstop=4
+
+" make backspace work like most other programs
+set backspace=2
+
+" configuração por arquivo
+autocmd Filetype java setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab!
+autocmd Filetype twig,html,css,javascript setlocal tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+autocmd Filetype yml,yaml setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
+
+" numeração
+set number
+set relativenumber
+
+" busca mais bonitinha
+set incsearch
+set hlsearch
+
+" encoding
+set fileencoding=utf-8
+set encoding=utf-8
+
+" mostra estrutura de diretórios
+set wildmenu
+
+let mapleader = ","
+
+" vim-php-refactoring-toolbox
+let g:vim_php_refactoring_auto_validate_sg = 1
+let g:vim_php_refactoring_auto_validate_rename = 1
+let g:vim_php_refactoring_auto_validate_visibility = 1
+let g:vim_php_refactoring_make_setter_fluent = 1
+
+" mappings for phpactor - vou liberando conforme eu for usando
+nmap <Leader>cc :call phpactor#ClassNew()<CR>
+nmap <Leader>us:call phpactor#UseAdd()<CR>
+
+" autocomplete
+autocmd FileType php setlocal omnifunc=phpactor#Complete
+let g:phpactorOmniError = v:true
+
+" java
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
+nmap <F6> <Plug>(JavaComplete-Imports-Add)
+imap <F6> <Plug>(JavaComplete-Imports-Add)

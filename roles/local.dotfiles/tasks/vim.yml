@@ -1,0 +1,55 @@
+- name: Install vim
+  apt:
+    name: vim
+    state: latest 
+    update_cache: yes
+
+- name: vim dirs
+  file:
+    path: "{{item}}"
+    recurse: yes
+    state: directory
+    owner: "{{dotfiles_user}}"
+    group: "{{dotfiles_user}}"
+  with_items:
+    - "{{dotfiles_home}}/.vim/autoload/"
+    - "{{dotfiles_home}}/.vim/bundle/"
+    - "{{dotfiles_home}}/.vim/colors/"
+
+- name: copy .vimrc
+  template:
+    src: templates/vimrc
+    dest: "{{dotfiles_home}}/.vimrc.local"
+    owner: "{{dotfiles_user}}"
+    group: "{{dotfiles_user}}"
+    mode: 0700
+
+- name: Download colors
+  get_url:
+    url: "{{ item.url }}"
+    dest: "{{ dotfiles_home }}/.vim/colors/{{ item.name }}.vim"
+    mode: 0440
+  with_items:
+    - { url: 'https://raw.githubusercontent.com/chriskempson/tomorrow-theme/master/vim/colors/Tomorrow-Night.vim', name: 'Tomorrow-Night'}
+
+- composer:
+    command: install
+    working_dir: "{{dotfiles_home}}/.vim/bundle/phpactor"
+    no_dev: no
+
+- file:
+    src: "{{dotfiles_home}}/.vim/bundle/phpactor/bin/phpactor"
+    dest: /usr/local/bin/phpactor
+    state: link
+
+- lineinfile:
+    path: "{{dotfiles_home}}/.vimrc.local"
+    line: 'colorscheme Tomorrow-Night'
+
+- name: vim fix permission
+  file:
+    path: "{{dotfiles_home}}/.vim/"
+    recurse: yes
+    owner: "{{dotfiles_user}}"
+    group: "{{dotfiles_user}}"
+    mode: 0700

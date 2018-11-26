@@ -1,0 +1,56 @@
+- name: Install zsh
+  apt:
+    name: zsh
+    state: latest 
+    update_cache: yes
+
+- name: Install fdclone
+  apt:
+    name: fdclone
+    state: latest 
+    update_cache: yes
+
+- name: copy .zshrc
+  become_user: "{{ dotfiles_user }}"
+  template:
+    src: zshrc
+    dest: "{{ dotfiles_home }}/.zshrc.local"
+
+- name: clone fzf
+  become_user: "{{ dotfiles_user}}"
+  git:
+    repo: https://github.com/junegunn/fzf.git
+    dest: "{{ dotfiles_home }}/.fzf"
+    update: yes
+
+- name: install fzf
+  become_user: "{{ dotfiles_user}}"
+  shell: "./install --all"
+  args:
+    chdir: "{{ dotfiles_home }}/.fzf"
+
+- name: fonts dir
+  file:
+    path: "{{ dotfiles_home }}/.fonts/"
+    state: directory
+
+- name: download fonts
+  unarchive:
+    src: "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/Hack.zip"
+    dest: "{{ dotfiles_home }}/.fonts/"
+    remote_src: yes
+
+- name: fix owner fonts dir
+  file:
+    path: "{{ dotfiles_home }}/.fonts/"
+    state: directory
+    owner: "{{ dotfiles_user}}"
+    group: "{{ dotfiles_user}}"
+
+
+- lineinfile:
+    path: "{{ dotfiles_home }}/.zshrc"
+    insertbefore: '^ZSH_THEME'
+    line: 'export TERM="xterm-256color"'
+
+

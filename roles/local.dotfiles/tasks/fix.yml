@@ -1,0 +1,15 @@
+# tasks to fix some general problems
+
+- name: desabilita o envio de emails
+  shell: "echo '' > /etc/aliases"
+
+- name: Instala pacotes para rodar ruby 2.2.2
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+  with_items:
+    - "libsqlite3-dev"
+    - "libssl1.0-dev"
+    - "sqlite3"
+
+

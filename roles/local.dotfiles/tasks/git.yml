@@ -1,0 +1,11 @@
+- name: Install git
+  apt:
+    name: git
+    state: latest 
+    update_cache: yes
+
+- name: gitconfig
+  become_user: "{{dotfiles_user}}"
+  copy:
+    src: templates/gitconfig
+    dest: "{{dotfiles_home}}/.gitconfig"

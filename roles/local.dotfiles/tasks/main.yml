@@ -1,0 +1,13 @@
+---
+- name: update apt cache
+  apt:
+    update_cache: yes
+
+- import_tasks: git.yml
+- import_tasks: vim.yml
+- import_tasks: zsh.yml
+- import_tasks: tmux.yml
+- import_tasks: fix.yml
+
+- name: remove things
+  apt: autoclean="yes" autoremove="yes"

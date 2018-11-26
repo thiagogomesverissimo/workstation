@@ -1,1 +1,34 @@
 - src: geerlingguy.mysql
+- src: geerlingguy.nodejs
+- src: geerlingguy.php
+- src: geerlingguy.php-versions
+- src: geerlingguy.composer
+- src: geerlingguy.firewall
+- src: geerlingguy.drupal-console
+- src: geerlingguy.drush
+- src: geerlingguy.docker
+- src: geerlingguy.pip
+- src: geerlingguy.java
+- src: infOpen.locales
+- src: ontic.ntp
+- src: adriagalin.timezone
+- src: geerlingguy.postgresql
+- src: uspdev.vimspell
+- src: zzet.rbenv
+- src: vaulttec.zsh
+- src: oefenweb.r
+
+  # desktop
+- src: cmprescott.chrome
+- src: ferrarimarco.virtualbox
+- src: oefenweb.rstudio
+- src: infOpen.vagrant
+
+# forks, I sent PR, but it was not accepted
+- name: mmacia.vim
+  src: https://github.com/thiagogomesverissimo/ansible-vim.git
+  version: install_force
+
+- name: ansible-role-phpcs
+  src: https://github.com/thiagogomesverissimo/ansible-role-phpcs
+  version: get-composer-bin-dir-from-user
