@@ -52,14 +52,3 @@ Same to root (used in ansible):
     sdk install maven
     sdk current
 
-## Lembretes
-
-Importar chaves públicas:
-
-    gpg2 --batch --import chave.pub
-
-Confiar na chave:
-
-    apt-get install except
-    expect -c "spawn gpg2 --edit-key ID_DA_CHAVE trust quit; send \"5\ry\r\"; expect eof"
-

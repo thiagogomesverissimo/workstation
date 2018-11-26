@@ -110,6 +110,8 @@
     # php
     - include_role:
         name: geerlingguy.php
+        public: yes
+        vars_from: 'Debian.yml'
       vars:
         php_enable_webserver: false
         php_default_version_debian: '7.2'
@@ -129,14 +131,27 @@
           - 'php7.2-mysql'
           - 'php7.2-sqlite3'
           - 'php7.2-sybase'
+        php_webserver_daemon: "apache2"
+
+        # Vendor-specific configuration paths on Debian/Ubuntu make my brain asplode.
         php_conf_paths:
           - /etc/php/{{ php_default_version_debian }}/fpm
           - /etc/php/{{ php_default_version_debian }}/apache2
           - /etc/php/{{ php_default_version_debian }}/cli
+
         php_extension_conf_paths:
           - /etc/php/{{ php_default_version_debian }}/fpm/conf.d
           - /etc/php/{{ php_default_version_debian }}/apache2/conf.d
           - /etc/php/{{ php_default_version_debian }}/cli/conf.d
+
+        php_apc_conf_filename: 20-apcu.ini
+        php_opcache_conf_filename: 10-opcache.ini
+        php_fpm_daemon: php{{ php_default_version_debian }}-fpm
+        php_fpm_conf_path: "/etc/php/{{ php_default_version_debian }}/fpm"
+        php_fpm_pool_conf_path: "{{ php_fpm_conf_path }}/pool.d/www.conf"
+
+        php_fpm_pool_user: www-data
+        php_fpm_pool_group: www-data
 
     # drush
     - include_role:
@@ -160,8 +175,8 @@
         composer_project_path: "{{dotfiles_user}}/.composer/vendor/bin/"
 
     # drupal-console
-    - include_role:
-        name: geerlingguy.drupal-console
+#    - include_role:
+#        name: geerlingguy.drupal-console
 
     # phpcs
     - include_role:

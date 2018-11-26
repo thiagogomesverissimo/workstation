@@ -9,20 +9,19 @@
 - src: geerlingguy.docker
 - src: geerlingguy.pip
 - src: geerlingguy.java
+- src: cmprescott.chrome
+- src: ferrarimarco.virtualbox
+- src: oefenweb.rstudio
 - src: infOpen.locales
 - src: ontic.ntp
 - src: adriagalin.timezone
 - src: geerlingguy.postgresql
+- src: chriswayg.msmtp-mailer
 - src: uspdev.vimspell
+- src: infOpen.vagrant
 - src: zzet.rbenv
 - src: vaulttec.zsh
-- src: oefenweb.r
-
-  # desktop
-- src: cmprescott.chrome
-- src: ferrarimarco.virtualbox
-- src: oefenweb.rstudio
-- src: infOpen.vagrant
+#- src: oefenweb.r
 
 # forks, I sent PR, but it was not accepted
 - name: mmacia.vim
@@ -32,3 +31,7 @@
 - name: ansible-role-phpcs
   src: https://github.com/thiagogomesverissimo/ansible-role-phpcs
   version: get-composer-bin-dir-from-user
+
+- name: oefenweb.r
+  src: https://github.com/thiagogomesverissimo/ansible-r.git
+  version: debian9
