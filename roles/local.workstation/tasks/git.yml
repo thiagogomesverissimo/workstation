@@ -5,7 +5,7 @@
     update_cache: yes
 
 - name: gitconfig
-  become_user: "{{dotfiles_user}}"
+  become_user: "{{workstation_user}}"
   copy:
     src: templates/gitconfig
-    dest: "{{dotfiles_home}}/.gitconfig"
+    dest: "{{workstation_home}}/.gitconfig"

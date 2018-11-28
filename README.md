@@ -30,7 +30,6 @@ Authorize it in the root (used in ansible):
 
 ## Download roles:
 
-    cd dotfiles
     ansible-galaxy install -r requirements.yml
 
 ## If desktop:
@@ -41,12 +40,9 @@ Authorize it in the root (used in ansible):
 
     ansible-playbook playbooks/cli.yml
 
-## Configurações
-
-1. trocar fonte no terminal para Hack NF Relugar
-2. 
-
 ## Acões feitas manualmente temporariamente:
+
+1. Instalação das coisas do java:
 
     curl -s https://get.sdkman.io | zsh
     sdk install java
@@ -56,4 +52,12 @@ Authorize it in the root (used in ansible):
     sdk install gradle
     sdk install maven
     sdk current
+
+2. Instalação do Spring Tool Suite.
+ - link no lançado
+ - black theme
+ - aumentar a fonte
+
+3. Trocar fonte no terminal para Hack NF Relugar
+
 
