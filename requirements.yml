@@ -16,14 +16,12 @@
 - src: ontic.ntp
 - src: adriagalin.timezone
 - src: geerlingguy.postgresql
-- src: chriswayg.msmtp-mailer
 - src: uspdev.vimspell
 - src: infOpen.vagrant
 - src: zzet.rbenv
 - src: vaulttec.zsh
-#- src: oefenweb.r
 
-# forks, I sent PR, but it was not accepted
+# forks that I sent PR and were not accepted
 - name: mmacia.vim
   src: https://github.com/thiagogomesverissimo/ansible-vim.git
   version: install_force

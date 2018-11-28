@@ -2,17 +2,17 @@
 
 fast configuration of my debian workstation
 
-## Importing ssh key:
+## In your user, create a ssh key:
 
-    usuario='thiago'
-    cp -a keys/ssh /home/$usuario/.ssh
-    sudo chmod -R 600 /home/$usuario/.ssh
-    sudo chmod 700 /home/$usuario/.ssh
+    ssh-keygen
 
-Same to root (used in ansible):
+Authorize it in the root (used in ansible):
 
-    sudo cp -a /home/$usuario/.ssh /root/.ssh
-    sudo chown -R root: /root/.ssh
+    sudo su
+    mkdir /root/.ssh
+    cat /home/USUARIO/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
+    chmod -R 600 /root/.ssh
+    chmod 700 /root/.ssh
 
 ## Ansible install on debian:
 
@@ -40,6 +40,11 @@ Same to root (used in ansible):
 ## cli only:
 
     ansible-playbook playbooks/cli.yml
+
+## Configurações
+
+1. trocar fonte no terminal para Hack NF Relugar
+2. 
 
 ## Acões feitas manualmente temporariamente:
 

@@ -1,8 +1,5 @@
 # tasks to fix some general problems
 
-- name: desabilita o envio de emails
-  shell: "echo '' > /etc/aliases"
-
 - name: Instala pacotes para rodar ruby 2.2.2
   apt:
     name: "{{ item }}"

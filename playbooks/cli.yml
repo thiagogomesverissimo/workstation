@@ -1,8 +1,8 @@
 ---
 - name: provision
   become: yes
-#  hosts: vagrant
-  hosts: localhost
+  hosts: vagrant
+#  hosts: localhost
 
   vars:
 
@@ -11,6 +11,14 @@
     dotfiles_home: /home/thiago
 
   tasks:
+
+    # some needed packages
+    - name: some needed packages
+      apt:
+        name: "{{ item }}"
+        update_cache: yes
+      with_items:
+        - "dirmngr"
 
     # Configuração do timezone são paulo
     - include_role:
@@ -295,6 +303,6 @@
           - es
           - en
 
-    # php-versions
+    # dotfiles
     - include_role:
         name: local.dotfiles
