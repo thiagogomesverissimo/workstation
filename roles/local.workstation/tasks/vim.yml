@@ -16,14 +16,6 @@
     - "{{workstation_home}}/.vim/bundle/"
     - "{{workstation_home}}/.vim/colors/"
 
-- name: copy .vimrc
-  template:
-    src: templates/vimrc
-    dest: "{{workstation_home}}/.vimrc.local"
-    owner: "{{workstation_user}}"
-    group: "{{workstation_user}}"
-    mode: 0700
-
 - name: Download colors
   get_url:
     url: "{{ item.url }}"

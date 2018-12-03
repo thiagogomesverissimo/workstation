@@ -1,8 +1,8 @@
 ---
 - name: provision
   become: yes
-  hosts: vagrant
-#  hosts: localhost
+#  hosts: vagrant
+  hosts: localhost
 
   vars:
 
@@ -42,9 +42,9 @@
         update_cache: yes
       with_items:
         - "dirmngr" # para instalar R via role
-        - "libsqlite3-dev" # para rodar ruby 2.2.2
-        - "libssl1.0-dev" # para rodar ruby 2.2.2
-        - "sqlite3" # para rodar ruby 2.2.2
+        - "libsqlite3-dev" # para rodar ruby 2.2.2 Fabi
+        - "libssl1.0-dev" # para rodar ruby 2.2.2 Fabi
+        - "sqlite3" # para rodar ruby 2.2.2 Fabi
 
     - name: Ensure group workstation_user exists
       group:
@@ -297,6 +297,19 @@
           - 'tab_width 4'
           - 'installed_paths ~/.composer/vendor/drupal/coder/coder_sniffer'
         phpcs_user: "{{workstation_user}}"
+
+    # dotfiles
+    - include_role:
+        name: geerlingguy.dotfiles
+      become_user: "{{workstation_user}}"
+      vars:
+        dotfiles_repo_local_destination: "~/.dotfiles"
+        dotfiles_repo: "https://github.com/thiagogomesverissimo/dotfiles.git"
+        dotfiles_files:
+          - .gitconfig
+          - .mytmux.sh
+          - .tmux.conf
+          - .vimrc.local
 
     # workstation
     - include_role:

@@ -20,6 +20,7 @@
 - src: infOpen.vagrant
 - src: zzet.rbenv
 - src: vaulttec.zsh
+- src: geerlingguy.dotfiles
 
 # forks that I sent PR and were not accepted
 - name: mmacia.vim
