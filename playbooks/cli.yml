@@ -171,6 +171,7 @@
           - ipython
           - jupyter
           - matplotlib
+          - hub
 
     # oh-my-zsh
     - include_role:
