@@ -42,6 +42,7 @@
         update_cache: yes
       with_items:
         - "dirmngr" # para instalar R via role
+        - tmux
         - "libsqlite3-dev" # para rodar ruby 2.2.2 Fabi
         - "libssl1.0-dev" # para rodar ruby 2.2.2 Fabi
         - "sqlite3" # para rodar ruby 2.2.2 Fabi
