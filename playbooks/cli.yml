@@ -313,6 +313,7 @@
           - .mytmux.sh
           - .tmux.conf
           - .vimrc.local
+          - .zshrc.local
 
     # workstation
     - include_role:
