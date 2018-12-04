@@ -4,12 +4,6 @@
     state: latest 
     update_cache: yes
 
-- name: copy .zshrc
-  become_user: "{{ workstation_user }}"
-  template:
-    src: zshrc
-    dest: "{{ workstation_home }}/.zshrc.local"
-
 - name: clone fzf
   become_user: "{{ workstation_user}}"
   git:
@@ -46,5 +40,3 @@
     path: "{{ workstation_home }}/.zshrc"
     insertbefore: '^ZSH_THEME'
     line: 'export TERM="xterm-256color"'
-
-

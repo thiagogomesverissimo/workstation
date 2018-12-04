@@ -35,7 +35,7 @@
     state: link
 
 - lineinfile:
-    path: "{{workstation_home}}/.vimrc.local"
+    path: "{{workstation_home}}/.vimrc"
     line: 'colorscheme Tomorrow-Night'
 
 - name: vim fix permission

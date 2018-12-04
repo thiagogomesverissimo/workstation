@@ -1,45 +1,30 @@
 ---
 - name: provision
   become: yes
-  hosts: vagrant
-#  hosts: localhost
+#  hosts: vagrant
+  hosts: localhost
 
   vars:
 
     # global vars
-    dotfiles_user: thiago
-    dotfiles_home: /home/thiago
+    workstation_user: thiago
+    workstation_home: /home/thiago
 
     # R
   tasks:
 
-    # php-versions
+    # dotfiles
     - include_role:
-        name: geerlingguy.php-versions
+        name: geerlingguy.dotfiles
+      become: yes
+      become_user: "{{workstation_user}}"
+      
       vars:
-        php_version: '7.2'
-
-    # php
-    - import_role:
-        name: geerlingguy.php
-        vars_from: 'Debian'
-      vars:
-        php_enable_webserver: false
-        php_default_version_debian: '7.2'
-        php_date_timezone: "America/Sao_Paulo"
-        php_packages:
-          - 'php7.2'
-          - 'php7.2-cli'
-          - 'php7.2-common'
-          - 'php7.2-gd'
-          - 'php7.2-mbstring'
-          - 'php7.2-intl'
-          - 'php7.2-xml'
-          - 'php7.2-curl'
-          - 'php7.2-ldap'
-          - 'php7.2-bcmath'
-          - 'php7.2-pgsql'
-          - 'php7.2-mysql'
-          - 'php7.2-sqlite3'
-          - 'php7.2-sybase'
-        php_webserver_daemon: "apache2"
+        dotfiles_home: "{{workstation_home}}"
+        dotfiles_repo_local_destination: "{{workstation_home}}/.dotfiles"
+        dotfiles_repo: "https://github.com/thiagogomesverissimo/dotfiles.git"
+        dotfiles_files:
+          - .gitconfig
+          - .mytmux.sh
+          - .tmux.conf
+          - .vimrc.local

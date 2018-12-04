@@ -301,9 +301,11 @@
     # dotfiles
     - include_role:
         name: geerlingguy.dotfiles
+      become: yes
       become_user: "{{workstation_user}}"
       vars:
-        dotfiles_repo_local_destination: "~/.dotfiles"
+        dotfiles_home: "{{workstation_home}}"
+        dotfiles_repo_local_destination: "{{workstation_home}}/.dotfiles"
         dotfiles_repo: "https://github.com/thiagogomesverissimo/dotfiles.git"
         dotfiles_files:
           - .gitconfig
