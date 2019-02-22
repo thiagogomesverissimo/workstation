@@ -4,9 +4,9 @@
   become: yes
 
   vars:
-    virtualbox_apt_package: "virtualbox-5.2"
-    vagrant_package_version: '2.1.5'
-    rstudio_version: "xenial-1.1.456"
+    virtualbox_apt_package: "virtualbox-6.0"
+    vagrant_package_version: '2.2.3'
+    rstudio_version: "xenial-1.1.463"
 
   pre_tasks:
 
