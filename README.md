@@ -40,6 +40,10 @@ Authorize it in the root (used in ansible):
 
     ansible-playbook playbooks/cli.yml
 
+## Montar um disco apontando para USP no virtualbox:
+
+    VBoxManage internalcommands createrawvmdk -rawdisk /dev/sdc -filename /opt/USB-Boot-Disk.vmdk
+
 ## Acões feitas manualmente temporariamente:
 
 1. Instalação das coisas do java:
