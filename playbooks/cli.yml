@@ -104,7 +104,7 @@
           - name: master
             host: "%"
             password: master
-            priv: "*.*:ALL"
+            priv: "*.*:ALL,GRANT"
 
     # nodejs
     - include_role:
