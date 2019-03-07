@@ -22,29 +22,24 @@
       - php{{ php_default_version_debian }}-pgsql
       - php{{ php_default_version_debian }}-sqlite3
       - php{{ php_default_version_debian }}-sybase
-      - php{{ php_default_version_debian }}-mysql
-      - php{{ php_default_version_debian }}-mysql
-      - php{{ php_default_version_debian }}-mysql
 
   pre_tasks:
-    # some needed packages
-    - name: some needed packages
+    - name: install some packages
       apt:
-        name: "{{ item }}"
+        name: "{{ packages }}"
         update_cache: yes
-      with_items:
-        - "dirmngr" # para instalar R via role
-        - tmux
-        - "libsqlite3-dev" # para rodar ruby 2.2.2 Fabi
-        - "libssl1.0-dev" # para rodar ruby 2.2.2 Fabi
-        - "sqlite3" # para rodar ruby 2.2.2 Fabi
+      vars:
+        packages:
+          - tmux
+          - dirmngr # para instalar R via role
+          - sqlite3
 
     - name: Ensure group workstation_user exists
       group:
         name: "{{ workstation_user }}"
         state: present
 
-    - name: Create a login user
+    - name: Create a login user to workstation_user
       user:
         name: "{{ workstation_user }}"
         group: "{{ workstation_user }}"
