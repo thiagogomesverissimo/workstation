@@ -35,8 +35,18 @@
     owner: "{{ workstation_user}}"
     group: "{{ workstation_user}}"
 
-
 - lineinfile:
     path: "{{ workstation_home }}/.zshrc"
     insertbefore: '^ZSH_THEME'
     line: 'export TERM="xterm-256color"'
+
+- name: Download algs4
+  get_url:
+    url: "https://algs4.cs.princeton.edu/code/algs4.jar"
+    dest: "{{ workstation_home }}/.algs4.jar"
+
+- lineinfile:
+    path: "{{ workstation_home }}/.zshrc"
+    insertbefore: '^ZSH_THEME'
+    line: 'export CLASSPATH=$CLASSPATH:~/.algs4.jar'
+
