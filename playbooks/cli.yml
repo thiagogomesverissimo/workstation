@@ -15,6 +15,7 @@
 
     # geerlingguy.php
     php_default_version_debian: '7.2'
+    php_enable_webserver: false
     php_use_managed_ini: false
     php_packages_extra:
       - php{{ php_default_version_debian }}-mysql
