@@ -19,7 +19,6 @@
 - src: uspdev.vimspell
 - src: infOpen.vagrant
 - src: zzet.rbenv
-- src: vaulttec.zsh
 - src: geerlingguy.dotfiles
 
 # forks that I sent PR and were not accepted
@@ -34,3 +33,7 @@
 - name: oefenweb.r
   src: https://github.com/thiagogomesverissimo/ansible-r.git
   version: debian9
+
+- name: vaulttec.zsh
+  src: https://github.com/vaulttec/ansible-role-zsh.git
+  version: 5b518747c6d3791e936dce678afa7
