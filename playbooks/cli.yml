@@ -128,18 +128,18 @@
           - "5432"
 
     # postgresql
-    - include_role:
-        name: geerlingguy.postgresql
-      vars:
-        postgresql_locales:
-          - 'pt_BR.UTF-8'
-        postgresql_users:
-          - name: master
-            password: 'master'
-            encrypted: True
-            role_attr_flags: SUPERUSER
-            db: template1
-            port: 5432
+#    - include_role:
+#        name: geerlingguy.postgresql
+#      vars:
+#        postgresql_locales:
+#          - 'pt_BR.UTF-8'
+#        postgresql_users:
+#          - name: master
+#            password: 'master'
+#            encrypted: True
+#            role_attr_flags: SUPERUSER
+#            db: template1
+#            port: 5432
 
     # docker
     - include_role:
