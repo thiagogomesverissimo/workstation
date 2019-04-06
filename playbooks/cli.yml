@@ -298,7 +298,6 @@
         dotfiles_repo: "https://github.com/thiagogomesverissimo/dotfiles.git"
         dotfiles_files:
           - .gitconfig
-          - .mytmux.sh
           - .tmux.conf
           - .vimrc.local
           - .zshrc.local
