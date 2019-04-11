@@ -177,11 +177,9 @@
           - zsh-syntax-highlighting
           - zsh-autosuggestions
           - pass
-          - Composer
           - tmux
           - vagrant
           - pip
-          - phpunit
           - git-prompt
         zsh_ohmy_custom_themes:
           - name: powerlevel9k
