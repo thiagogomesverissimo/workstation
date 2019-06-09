@@ -60,4 +60,7 @@ Authorize it in the root (used in ansible):
 
 3. Trocar fonte no terminal para Hack NF Relugar
 
+4. tor browser
+5. configuração do dropbox
+
 
