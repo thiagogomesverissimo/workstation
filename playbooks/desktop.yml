@@ -43,6 +43,7 @@
       - audacity
       - r-base
       - thunderbird
+      - nautilus-dropbox
 
   roles:
    - cmprescott.chrome
