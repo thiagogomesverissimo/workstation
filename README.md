@@ -61,6 +61,10 @@ Authorize it in the root (used in ansible):
 3. Trocar fonte no terminal para Hack NF Relugar
 
 4. tor browser
+   
+    mkdir ~/.local/share/applications
+    cp start-tor-browser.desktop ~/.local/share/applications/
+    
 5. configuração do dropbox
 
 
