@@ -64,7 +64,8 @@ Authorize it in the root (used in ansible):
    
     mkdir ~/.local/share/applications
     cp start-tor-browser.desktop ~/.local/share/applications/
-    
+usar backport? https://wiki.debian.org/TorBrowser
+Instalar mais navegadores??
 5. configuração do dropbox
 
 
