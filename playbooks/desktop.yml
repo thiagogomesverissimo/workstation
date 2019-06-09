@@ -33,6 +33,7 @@
   - name: Instalação de pacotes via apt
     apt: name="{{ item }}" state=latest update_cache=yes
     with_items:
+      - transmission-gtk
       - terminator
       - gtkterm
       - vlc
