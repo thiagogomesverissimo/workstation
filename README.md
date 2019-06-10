@@ -42,7 +42,7 @@ Authorize it in the root (used in ansible):
 
 ## Acões feitas manualmente temporariamente:
 
-1. Instalação das coisas do java:
+### Instalação das coisas do java:
 
     curl -s https://get.sdkman.io | zsh
     sdk install java
@@ -53,19 +53,14 @@ Authorize it in the root (used in ansible):
     sdk install maven
     sdk current
 
-2. Instalação do Spring Tool Suite.
- - link no lançado
+### Instalação do Spring Tool Suite.
+
+ - link no lançador
  - black theme
  - aumentar a fonte
 
-3. Trocar fonte no terminal para Hack NF Relugar
+### Trocar fonte no terminal para Hack NF Relugar
 
-4. tor browser
-   
-    mkdir ~/.local/share/applications
-    cp start-tor-browser.desktop ~/.local/share/applications/
-usar backport? https://wiki.debian.org/TorBrowser
-Instalar mais navegadores??
-5. configuração do dropbox
+### configuração do dropbox
 
 
