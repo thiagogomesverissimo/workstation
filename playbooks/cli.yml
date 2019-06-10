@@ -216,16 +216,16 @@
         name: geerlingguy.java
 
     # R
-    - include_role:
-        name: oefenweb.r
-      vars:
-        r_install_dev: true
-        r_install:
-          - "r-recommended"
-        r_packages:
-          - name: dplyr
-          - name: "davidcarslaw/openair"
-            type: github
+#    - include_role:
+#        name: oefenweb.r
+#      vars:
+#        r_install_dev: true
+#        r_install:
+#          - "r-recommended"
+#        r_packages:
+#          - name: dplyr
+#          - name: "davidcarslaw/openair"
+#            type: github
 
     # rbenv
     - include_role:
@@ -288,8 +288,6 @@
     # dotfiles
     - include_role:
         name: geerlingguy.dotfiles
-      become: yes
-      become_user: "{{workstation_user}}"
       vars:
         dotfiles_home: "{{workstation_home}}"
         dotfiles_repo_local_destination: "{{workstation_home}}/.dotfiles"
