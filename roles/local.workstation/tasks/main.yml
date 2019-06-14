@@ -6,6 +6,7 @@
 - import_tasks: vim.yml
 - import_tasks: zsh.yml
 - import_tasks: fix.yml
+- import_tasks: dotfiles.yml
 
 - name: remove things
   apt: autoclean="yes" autoremove="yes"

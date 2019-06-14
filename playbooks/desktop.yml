@@ -5,7 +5,7 @@
 
   vars:
     virtualbox_apt_package: "virtualbox-6.0"
-    vagrant_package_version: '2.2.3'
+    vagrant_package_version: '2.2.4'
     rstudio_version: "xenial-1.1.463"
 
   pre_tasks:
@@ -45,6 +45,7 @@
       - r-base
       - thunderbird
       - nautilus-dropbox
+      - obs-studio
 
   roles:
    - cmprescott.chrome

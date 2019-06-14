@@ -23,6 +23,8 @@
       - php{{ php_default_version_debian }}-pgsql
       - php{{ php_default_version_debian }}-sqlite3
       - php{{ php_default_version_debian }}-sybase
+      - php{{ php_default_version_debian }}-bcmath
+      - php{{ php_default_version_debian }}-ldap
 
   pre_tasks:
     - name: install some packages
@@ -284,19 +286,6 @@
           - 'tab_width 4'
           - 'installed_paths ~/.composer/vendor/drupal/coder/coder_sniffer'
         phpcs_user: "{{workstation_user}}"
-
-    # dotfiles
-    - include_role:
-        name: geerlingguy.dotfiles
-      vars:
-        dotfiles_home: "{{workstation_home}}"
-        dotfiles_repo_local_destination: "{{workstation_home}}/.dotfiles"
-        dotfiles_repo: "https://github.com/thiagogomesverissimo/dotfiles.git"
-        dotfiles_files:
-          - .gitconfig
-          - .tmux.conf
-          - .vimrc.local
-          - .zshrc.local
 
     # workstation
     - include_role:
