@@ -160,9 +160,10 @@
     - include_role:
         name: geerlingguy.docker
       vars:
-        docker_compose_version: 1.21.2
+        docker_compose_version: 1.24.0
         docker_users:
           - "{{workstation_user}}"
+
     # pip
     - include_role:
         name: geerlingguy.pip
