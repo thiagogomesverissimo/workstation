@@ -10,6 +10,18 @@
     workstation_user: thiago
     workstation_home: /home/thiago
     php_version: "7.3"
+    php_default_version_debian: "{{php_version}}"
+    php_use_managed_ini: false
+    php_enable_apc: false
+    php_enable_webserver: false
+    php_packages_extra:
+      - php{{ php_version }}-curl
+      - php{{ php_version }}-ldap
+      - php{{ php_version }}-bcmath
+      - php{{ php_version }}-pgsql
+      - php{{ php_version }}-mysql
+      - php{{ php_version }}-sqlite3
+      - php{{ php_version }}-sybase
 
   tasks:
 
@@ -65,19 +77,6 @@
     - name: Instala PHP
       include_role:
         name: geerlingguy.php
-      vars:
-        php_default_version_debian: "{{php_version}}"
-        php_use_managed_ini: false
-        php_enable_apc: false
-        php_enable_webserver: false
-        php_packages_extra:
-          - php{{ php_version }}-curl
-          - php{{ php_version }}-ldap
-          - php{{ php_version }}-bcmath
-          - php{{ php_version }}-pgsql
-          - php{{ php_version }}-mysql
-          - php{{ php_version }}-sqlite3
-          - php{{ php_version }}-sybase
 
     # drupal console
     - name: geerlingguy.drupal-console
