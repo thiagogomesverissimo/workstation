@@ -1,8 +1,7 @@
 ---
 - name: provision
   become: yes
-#  hosts: vagrant
-  hosts: localhost
+  hosts: vagrant
 
   vars:
 
@@ -10,9 +9,21 @@
     workstation_user: thiago
     workstation_home: /home/thiago
 
-    # R
   tasks:
 
-    # workstation
-    - include_role:
-        name: local.workstation
+    - name: Instala PHP
+      include_role:
+        name: geerlingguy.php
+      vars:
+        php_default_version_debian: "7.3"
+        php_version: "{{php_default_version_debian}}"
+        php_use_managed_ini: false
+        php_enable_webserver: false
+        php_packages_extra:
+          - php{{ php_default_version_debian }}-curl
+          - php{{ php_default_version_debian }}-ldap
+          - php{{ php_default_version_debian }}-bcmath
+          - php{{ php_default_version_debian }}-pgsql
+          - php{{ php_default_version_debian }}-mysql
+          - php{{ php_default_version_debian }}-sqlite3
+          - php{{ php_default_version_debian }}-sybase

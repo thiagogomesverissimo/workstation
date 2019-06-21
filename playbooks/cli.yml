@@ -1,66 +1,31 @@
 ---
 - name: provision
   become: yes
-#  hosts: vagrant
-  hosts: localhost
+  hosts: vagrant
+#  hosts: localhost
 
   vars:
 
     # global vars
     workstation_user: thiago
     workstation_home: /home/thiago
-    
-    # geerlingguy.php-versions
-    php_version: '7.3'
+    php_version: "7.3"
 
-    # geerlingguy.php
-    php_default_version_debian: '7.3'
-    php_enable_webserver: false
-    php_use_managed_ini: false
-    php_packages_extra:
-      - php{{ php_default_version_debian }}-mysql
-      - php{{ php_default_version_debian }}-ldap
-      - php{{ php_default_version_debian }}-pgsql
-      - php{{ php_default_version_debian }}-sqlite3
-      - php{{ php_default_version_debian }}-sybase
-      - php{{ php_default_version_debian }}-bcmath
-      - php{{ php_default_version_debian }}-ldap
+  tasks:
 
-  pre_tasks:
-    - name: install some packages
+    # general packages
+    - name: install general packages
       apt:
         name: "{{ packages }}"
         update_cache: yes
       vars:
         packages:
           - tmux
-          - dirmngr # para instalar R via role
+          - dirmngr
           - sqlite3
-
-    - name: Ensure group workstation_user exists
-      group:
-        name: "{{ workstation_user }}"
-        state: present
-
-    - name: Create a login user to workstation_user
-      user:
-        name: "{{ workstation_user }}"
-        group: "{{ workstation_user }}"
-        groups:
-          - sudo
-          - "{{ workstation_user }}"
-        append: yes
-        state: present
-        system: yes
-        createhome: yes
-
-  # roles that did not worked with include_role...
-  roles:
-    - geerlingguy.php-versions
-    - geerlingguy.php
-    - geerlingguy.drupal-console 
-
-  post_tasks:
+          - zip
+          - unzip
+          - git
 
     # Configuração do timezone são paulo
     - include_role:
@@ -91,6 +56,67 @@
           - 'a.st1.ntp.br'
           - 'b.st1.ntp.br'
 
+    # php versions
+    - name: Instala PHP versions
+      include_role:
+        name: geerlingguy.php-versions
+
+    # php
+    - name: Instala PHP
+      include_role:
+        name: geerlingguy.php
+      vars:
+        php_default_version_debian: "{{php_version}}"
+        php_use_managed_ini: false
+        php_enable_apc: false
+        php_enable_webserver: false
+        php_packages_extra:
+          - php{{ php_version }}-curl
+          - php{{ php_version }}-ldap
+          - php{{ php_version }}-bcmath
+          - php{{ php_version }}-pgsql
+          - php{{ php_version }}-mysql
+          - php{{ php_version }}-sqlite3
+          - php{{ php_version }}-sybase
+
+    # drupal console
+    - name: geerlingguy.drupal-console
+      include_role:
+        name: geerlingguy.drupal-console
+
+    # drush
+    - include_role:
+        name: geerlingguy.drush
+      vars:
+        drush_launcher_version: 0.6.0
+
+    # composer
+    - include_role:
+        name: geerlingguy.composer
+      vars:
+        composer_keep_updated: True
+        composer_global_packages:
+          - name: squizlabs/php_codesniffer 
+          - name: drupal/coder
+          - name: dealerdirect/phpcodesniffer-composer-installer
+          - name: phpunit/phpunit
+          - name: friendsofphp/php-cs-fixer
+        composer_home_owner: "{{workstation_user}}"
+        composer_home_group: "{{workstation_user}}"
+        composer_project_path: "{{workstation_user}}/.composer/vendor/bin/"
+
+    # phpcs
+    - include_role:
+        name: ansible-role-phpcs
+      vars:
+        phpcs_config_set:
+          - 'encoding utf-8'
+          - 'colors 1'
+          - 'report_width 120'
+          - 'tab_width 4'
+          - 'installed_paths ~/.composer/vendor/drupal/coder/coder_sniffer'
+        phpcs_user: "{{workstation_user}}"
+
     # mysql
     - include_role:
         name: geerlingguy.mysql
@@ -118,6 +144,8 @@
           - name: gulp-cli
           - name: bower
           - name: generator-webapp
+          - name: webpack
+          - name: webpack-cli
 
     # firewall
     - include_role:
@@ -128,20 +156,6 @@
           - "80"
           - "3306"
           - "5432"
-
-    # postgresql
-#    - include_role:
-#        name: geerlingguy.postgresql
-#      vars:
-#        postgresql_locales:
-#          - 'pt_BR.UTF-8'
-#        postgresql_users:
-#          - name: master
-#            password: 'master'
-#            encrypted: True
-#            role_attr_flags: SUPERUSER
-#            db: template1
-#            port: 5432
 
     # docker
     - include_role:
@@ -156,7 +170,6 @@
       vars:
         pip_install_packages:
           - virtualenv
-          - goobook
           - numpy
           - pandas
           - ipython
@@ -217,18 +230,6 @@
     - include_role:
         name: geerlingguy.java
 
-    # R
-#    - include_role:
-#        name: oefenweb.r
-#      vars:
-#        r_install_dev: true
-#        r_install:
-#          - "r-recommended"
-#        r_packages:
-#          - name: dplyr
-#          - name: "davidcarslaw/openair"
-#            type: github
-
     # rbenv
     - include_role:
         name: zzet.rbenv
@@ -254,38 +255,32 @@
           - es
           - en
 
-    # drush
+    # postgresql
     - include_role:
-        name: geerlingguy.drush
+        name: geerlingguy.postgresql
       vars:
-        drush_launcher_version: 0.6.0
+        postgresql_locales:
+          - 'pt_BR.UTF-8'
+        postgresql_users:
+          - name: master
+            password: 'master'
+            encrypted: True
+            role_attr_flags: SUPERUSER
+            db: template1
+            port: 5432
 
-    # composer
-    - include_role:
-        name: geerlingguy.composer
-      vars:
-        composer_keep_updated: False
-        composer_global_packages:
-          - name: squizlabs/php_codesniffer 
-          - name: drupal/coder
-          - name: dealerdirect/phpcodesniffer-composer-installer
-          - name: phpunit/phpunit
-          - name: friendsofphp/php-cs-fixer
-        composer_home_owner: "{{workstation_user}}"
-        composer_home_group: "{{workstation_user}}"
-        composer_project_path: "{{workstation_user}}/.composer/vendor/bin/"
-
-    # phpcs
-    - include_role:
-        name: ansible-role-phpcs
-      vars:
-        phpcs_config_set:
-          - 'encoding utf-8'
-          - 'colors 1'
-          - 'report_width 120'
-          - 'tab_width 4'
-          - 'installed_paths ~/.composer/vendor/drupal/coder/coder_sniffer'
-        phpcs_user: "{{workstation_user}}"
+#    # R
+#    - include_role:
+#        name: oefenweb.r
+#      vars:
+#        r_install_dev: true
+#        r_install:
+#          - "r-recommended"
+#        r_packages:
+#          - name: dplyr
+#          - name: "davidcarslaw/openair"
+#            type: github
+#
 
     # workstation
     - include_role:
