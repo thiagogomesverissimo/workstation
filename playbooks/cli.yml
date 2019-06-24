@@ -1,8 +1,8 @@
 ---
 - name: provision
   become: yes
-  hosts: vagrant
-#  hosts: localhost
+#  hosts: vagrant
+  hosts: localhost
 
   vars:
 
@@ -255,19 +255,19 @@
           - es
           - en
 
-    # postgresql
-    - include_role:
-        name: geerlingguy.postgresql
-      vars:
-        postgresql_locales:
-          - 'pt_BR.UTF-8'
-        postgresql_users:
-          - name: master
-            password: 'master'
-            encrypted: True
-            role_attr_flags: SUPERUSER
-            db: template1
-            port: 5432
+#    # postgresql
+#    - include_role:
+#        name: geerlingguy.postgresql
+#      vars:
+#        postgresql_locales:
+#          - 'pt_BR.UTF-8'
+#        postgresql_users:
+#          - name: master
+#            password: 'master'
+#            encrypted: True
+#            role_attr_flags: SUPERUSER
+#            db: template1
+#            port: 5432
 
 #    # R
 #    - include_role:
