@@ -1,7 +1,0 @@
-- name: fix user and owner
-  file:
-    path: "{{workstation_home}}/"
-    recurse: yes
-    owner: "{{workstation_user}}"
-    group: "{{workstation_user}}"
-
