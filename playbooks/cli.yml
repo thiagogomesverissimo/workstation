@@ -153,6 +153,7 @@
         firewall_allowed_tcp_ports:
           - "22"
           - "80"
+          - "631"
           - "3306"
           - "5432"
 
