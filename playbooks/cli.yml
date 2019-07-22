@@ -226,6 +226,7 @@
           - 'phpactor/phpactor'
           - 'artur-shaik/vim-javacomplete2'
           - 'airblade/vim-rooter'
+          - 'farconics/victionary'
 
     # java
     - include_role:
