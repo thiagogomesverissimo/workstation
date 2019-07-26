@@ -46,9 +46,9 @@
       - thunderbird
       - nautilus-dropbox
       - obs-studio
+      - chromium
 
   roles:
-   - cmprescott.chrome
    - ferrarimarco.virtualbox
    - infOpen.vagrant
    - oefenweb.rstudio
