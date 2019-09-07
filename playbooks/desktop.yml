@@ -47,6 +47,7 @@
       - nautilus-dropbox
       - obs-studio
       - chromium
+      - simple-scan
 
   roles:
    - ferrarimarco.virtualbox
