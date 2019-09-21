@@ -35,6 +35,7 @@
     with_items:
       - transmission-gtk
       - terminator
+      - brasero
       - gtkterm
       - vlc
       - kazam
