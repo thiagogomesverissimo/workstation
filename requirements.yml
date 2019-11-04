@@ -1,3 +1,15 @@
+# Não lembro pq fixei nessa versão
+- name: vaulttec.zsh
+  src: https://github.com/vaulttec/ansible-role-zsh.git
+  version: 5b518747c6d3791e936dce678afa7
+
+# fork that I sent PR and were not accepted
+- name: mmacia.vim
+  src: https://github.com/thiagogomesverissimo/ansible-vim.git
+  version: install_force
+
+
+
 - src: geerlingguy.mysql
 - src: geerlingguy.nodejs
 - src: geerlingguy.php
@@ -20,19 +32,13 @@
 - src: zzet.rbenv
 - src: geerlingguy.dotfiles
 
-# forks that I sent PR and were not accepted
-- name: mmacia.vim
-  src: https://github.com/thiagogomesverissimo/ansible-vim.git
-  version: install_force
 
-- name: ansible-role-phpcs
-  src: https://github.com/thiagogomesverissimo/ansible-role-phpcs
-  version: get-composer-bin-dir-from-user
+#- name: ansible-role-phpcs
+#  src: https://github.com/thiagogomesverissimo/ansible-role-phpcs
+#  version: get-composer-bin-dir-from-user
 
-- name: oefenweb.r
-  src: https://github.com/thiagogomesverissimo/ansible-r.git
-  version: debian9
+#- name: oefenweb.r
+#  src: https://github.com/thiagogomesverissimo/ansible-r.git
+#  version: debian9
 
-- name: vaulttec.zsh
-  src: https://github.com/vaulttec/ansible-role-zsh.git
-  version: 5b518747c6d3791e936dce678afa7
+

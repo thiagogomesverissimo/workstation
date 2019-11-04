@@ -94,6 +94,18 @@ Add the key:
 
 ### Trocar fonte no terminal para Hack NF Relugar
 
-### configuração do dropbox
+### dev env:
+
+	scp -i /home/thiago/.vagrant.d/insecure_private_key -r ~/.ssh vagrant@192.168.100.200:ssh
+	vagrant ssh
+	sudo su
+	mv /home/vagrant/ssh /root/.ssh
+	chown -R root:root /root/.ssh
+	adduser thiago
+	addgroup thiago sudo
+
+
+	
+	
 
 

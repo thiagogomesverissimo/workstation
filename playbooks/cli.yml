@@ -1,8 +1,8 @@
 ---
 - name: provision
   become: yes
-#  hosts: vagrant
-  hosts: localhost
+  hosts: vagrant
+#  hosts: localhost
 
   vars:
 
@@ -158,12 +158,12 @@
           - "5432"
 
     # docker
-    - include_role:
-        name: geerlingguy.docker
-      vars:
-        docker_compose_version: 1.24.0
-        docker_users:
-          - "{{workstation_user}}"
+#    - include_role:
+#        name: geerlingguy.docker
+#      vars:
+#        docker_compose_version: 1.24.0
+#        docker_users:
+#          - "{{workstation_user}}"
 
     # pip
     - include_role:
@@ -229,33 +229,33 @@
           - 'farconics/victionary'
 
     # java
-    - include_role:
-        name: geerlingguy.java
+#    - include_role:
+#        name: geerlingguy.java
 
     # rbenv
-    - include_role:
-        name: zzet.rbenv
-      vars:
-        rbenv:
-          env: user
-          version: v1.0.0
-          default_ruby: 2.5.1
-          rubies:
-            - version: 2.4.2
-            - version: 2.5.1
-        rbenv_users:
-         - "{{ workstation_user }}"
+#    - include_role:
+#        name: zzet.rbenv
+#      vars:
+#        rbenv:
+#          env: user
+#          version: v1.0.0
+#          default_ruby: 2.5.1
+#          rubies:
+#            - version: 2.4.2
+#            - version: 2.5.1
+#        rbenv_users:
+#         - "{{ workstation_user }}"
 
     # vim spell
-    - include_role:
-        name: uspdev.vimspell
-      vars:
-        vimspell_home: "{{workstation_home}}"
-        vimspell_user: "{{workstation_user}}"
-        vimspell_languages:
-          - pt
-          - es
-          - en
+#    - include_role:
+#        name: uspdev.vimspell
+#      vars:
+#        vimspell_home: "{{workstation_home}}"
+#        vimspell_user: "{{workstation_user}}"
+#        vimspell_languages:
+#          - pt
+#          - es
+#          - en
 
 #    # postgresql
 #    - include_role:
@@ -285,5 +285,5 @@
 #
 
     # workstation
-    - include_role:
-        name: local.workstation
+#    - include_role:
+#        name: local.workstation
