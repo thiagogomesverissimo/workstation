@@ -157,14 +157,6 @@
           - "3306"
           - "5432"
 
-    # docker
-#    - include_role:
-#        name: geerlingguy.docker
-#      vars:
-#        docker_compose_version: 1.24.0
-#        docker_users:
-#          - "{{workstation_user}}"
-
     # pip
     - include_role:
         name: geerlingguy.pip
@@ -232,20 +224,6 @@
     - include_role:
         name: geerlingguy.java
 
-    # rbenv
-#    - include_role:
-#        name: zzet.rbenv
-#      vars:
-#        rbenv:
-#          env: user
-#          version: v1.0.0
-#          default_ruby: 2.5.1
-#          rubies:
-#            - version: 2.4.2
-#            - version: 2.5.1
-#        rbenv_users:
-#         - "{{ workstation_user }}"
-
     # vim spell
     - include_role:
         name: uspdev.vimspell
@@ -271,6 +249,28 @@
             db: template1
             port: 5432
 
+    # rbenv
+#    - include_role:
+#        name: zzet.rbenv
+#      vars:
+#        rbenv:
+#          env: user
+#          version: v1.0.0
+#          default_ruby: 2.5.1
+#          rubies:
+#            - version: 2.4.2
+#            - version: 2.5.1
+#        rbenv_users:
+#         - "{{ workstation_user }}"
+
+    # docker
+#    - include_role:
+#        name: geerlingguy.docker
+#      vars:
+#        docker_compose_version: 1.24.0
+#        docker_users:
+#          - "{{workstation_user}}"
+
 #    # R
 #    - include_role:
 #        name: oefenweb.r
@@ -285,5 +285,5 @@
 #
 
     # workstation
-#    - include_role:
-#        name: local.workstation
+    - include_role:
+        name: local.workstation
