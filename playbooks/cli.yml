@@ -229,8 +229,8 @@
           - 'farconics/victionary'
 
     # java
-#    - include_role:
-#        name: geerlingguy.java
+    - include_role:
+        name: geerlingguy.java
 
     # rbenv
 #    - include_role:
@@ -247,29 +247,29 @@
 #         - "{{ workstation_user }}"
 
     # vim spell
-#    - include_role:
-#        name: uspdev.vimspell
-#      vars:
-#        vimspell_home: "{{workstation_home}}"
-#        vimspell_user: "{{workstation_user}}"
-#        vimspell_languages:
-#          - pt
-#          - es
-#          - en
+    - include_role:
+        name: uspdev.vimspell
+      vars:
+        vimspell_home: "{{workstation_home}}"
+        vimspell_user: "{{workstation_user}}"
+        vimspell_languages:
+          - pt
+          - es
+          - en
 
-#    # postgresql
-#    - include_role:
-#        name: geerlingguy.postgresql
-#      vars:
-#        postgresql_locales:
-#          - 'pt_BR.UTF-8'
-#        postgresql_users:
-#          - name: master
-#            password: 'master'
-#            encrypted: True
-#            role_attr_flags: SUPERUSER
-#            db: template1
-#            port: 5432
+    # postgresql
+    - include_role:
+        name: geerlingguy.postgresql
+      vars:
+        postgresql_locales:
+          - 'pt_BR.UTF-8'
+        postgresql_users:
+          - name: master
+            password: 'master'
+            encrypted: True
+            role_attr_flags: SUPERUSER
+            db: template1
+            port: 5432
 
 #    # R
 #    - include_role:
