@@ -1,8 +1,8 @@
 ---
 - name: provision
   become: yes
-  hosts: vagrant
-#  hosts: localhost
+  #  hosts: vagrant
+  hosts: localhost
 
   vars:
 

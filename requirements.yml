@@ -8,7 +8,9 @@
   src: https://github.com/thiagogomesverissimo/ansible-vim.git
   version: install_force
 
-
+- name: ansible-role-phpcs
+  src: https://github.com/thiagogomesverissimo/ansible-role-phpcs
+  version: get-composer-bin-dir-from-user
 
 - src: geerlingguy.mysql
 - src: geerlingguy.nodejs
@@ -33,9 +35,6 @@
 - src: geerlingguy.dotfiles
 
 
-#- name: ansible-role-phpcs
-#  src: https://github.com/thiagogomesverissimo/ansible-role-phpcs
-#  version: get-composer-bin-dir-from-user
 
 #- name: oefenweb.r
 #  src: https://github.com/thiagogomesverissimo/ansible-r.git

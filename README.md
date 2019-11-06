@@ -17,15 +17,13 @@ So, authorize it in the root:
     chmod -R 600 /root/.ssh
     chmod 700 /root/.ssh
 
-## Ansible install on debian:
+## Ansible install on debian 10:
 
 Dependencies:
 
-    sudo apt-get install dirmngr openssh-server git
+    sudo apt-get install dirmngr openssh-server git gnupg2
+    echo "deb http://ppa.launchpad.net/ansible/ansible/ubuntu bionic main" | sudo tee /etc/apt/sources.list.d/ansible.list
 
-Insert this line at: /etc/apt/sources.list
-
-    deb http://ppa.launchpad.net/ansible/ansible/ubuntu trusty main
 
 Add the key:
     
