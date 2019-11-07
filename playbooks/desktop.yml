@@ -5,17 +5,10 @@
 
   vars:
     virtualbox_apt_package: "virtualbox-6.0"
-    vagrant_package_version: '2.2.4'
-    rstudio_version: "xenial-1.1.463"
+    vagrant_package_version: '2.2.6'
+    rstudio_version: "1.2.5019"
 
   pre_tasks:
-
-#  - name: disable apport messages
-#    lineinfile: >
-#      dest=/etc/default/apport
-#      line="enabled=0"
-#      regexp="enabled="
-#      state=present
 
   - name: update
     apt:
@@ -51,6 +44,7 @@
       - simple-scan
 
   roles:
-   - ferrarimarco.virtualbox
-   - infOpen.vagrant
-   - oefenweb.rstudio
+  - ferrarimarco.virtualbox
+# roles não funcionam:
+#   - infOpen.vagrant
+#   - oefenweb.rstudio
