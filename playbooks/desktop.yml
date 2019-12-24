@@ -4,9 +4,8 @@
   become: yes
 
   vars:
-    virtualbox_apt_package: "virtualbox-6.0"
     vagrant_package_version: '2.2.6'
-    rstudio_version: "1.2.5019"
+    rstudio_version: "1.2.5033"
 
   pre_tasks:
 
@@ -24,27 +23,25 @@
       autoremove: yes
 
   - name: Instalação de pacotes via apt
-    apt: name="{{ item }}" state=latest update_cache=yes
-    with_items:
-      - transmission-gtk
-      - terminator
-      - brasero
-      - gtkterm
-      - vlc
-      - kazam
-      - fritzing
-      - gimp
-      - inkscape
-      - audacity
-      - r-base
-      - thunderbird
-      - nautilus-dropbox
-      - obs-studio
-      - chromium
-      - simple-scan
+    apt:
+      pkg:
+        - transmission-gtk
+        - terminator
+        - brasero
+        - gtkterm
+        - vlc
+        - kazam
+        - fritzing
+        - gimp
+        - inkscape
+        - audacity
+        - r-base
+        - thunderbird
+        - nautilus-dropbox
+        - obs-studio
+        - chromium
+        - simple-scan
 
   roles:
-  - ferrarimarco.virtualbox
-# roles não funcionam:
-#   - infOpen.vagrant
-#   - oefenweb.rstudio
+   - oefenweb.rstudio
+   - infOpen.vagrant
