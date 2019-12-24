@@ -103,7 +103,20 @@ Add the key:
 	addgroup thiago sudo
 
 
-	
-	
+### Instalações manuais:
 
+Vagrant:
 
+    https://www.vagrantup.com/downloads.html
+
+Instalação do plugin libvirt para vagrant:
+
+    $ vagrant plugin install vagrant-libvirt
+    $ vagrant plugin list
+
+Instalação de boxes que uso normalmente:
+
+    vagrant box add generic/debian9 --provider=libvirt
+    vagrant box add generic/debian10 --provider=libvirt
+    vagrant box add generic/ubuntu1604 --provider=libvirt
+    vagrant box add generic/ubuntu1804 --provider=libvirt

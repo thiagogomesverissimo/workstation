@@ -6,6 +6,7 @@
   vars:
     vagrant_package_version: '2.2.6'
     rstudio_version: "1.2.5033"
+    workstation_user: thiago
 
   pre_tasks:
 
@@ -41,7 +42,15 @@
         - obs-studio
         - chromium
         - simple-scan
+        - virt-manager
+        - libvirt-dev
 
-  roles:
-   - oefenweb.rstudio
-   - infOpen.vagrant
+  - name: adding existing user '{{ workstation_user }}' to group libvirt
+    user:
+      name: '{{ workstation_user }}'
+      groups: libvirt
+      append: yes
+
+#  roles:
+#   - oefenweb.rstudio
+#   - infOpen.vagrant
