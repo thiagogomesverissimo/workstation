@@ -45,24 +45,24 @@ Add the key:
 
 ## test cli.yml playbook at VM:
 
-1. Create your user at VM:
-
+Create your user at VM:
+      
     vagrant ssh
     sudo adduser thiago
 
-2. Enable password authentication at VM editing /etc/ssh/sshd_config:
+Enable password authentication at VM editing /etc/ssh/sshd_config:
 
     PasswordAuthentication yes
 
-3. Restart ssh:
+Restart ssh:
 
     sudo service ssh restart
 
-4. Create new ssh keys or copy from your computer:
+Create new ssh keys or copy from your computer:
 
     scp -r ~/.ssh thiago@192.168.100.200:
 
-5. Inside VM, allows root ssh using your key:
+Inside VM, allows root ssh using your key:
     
     vagrant ssh
     sudo su
