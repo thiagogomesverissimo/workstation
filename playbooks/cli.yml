@@ -140,7 +140,7 @@
           - name: generator-webapp
           - name: webpack
           - name: webpack-cli
-          - name: mermaid.cli
+ #          - name: mermaid.cli
 
     # firewall
     - include_role:
