@@ -37,6 +37,8 @@
           - sqlite3
           - zip
           - unzip
+          - rar
+          - unrar
           - git
 
     # Configuração do timezone são paulo
