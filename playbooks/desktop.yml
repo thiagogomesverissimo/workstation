@@ -8,7 +8,7 @@
     rstudio_version: "1.2.5033"
     workstation_user: thiago
 
-  pre_tasks:
+  tasks:
 
   - name: update
     apt:
@@ -51,6 +51,14 @@
       groups: libvirt
       append: yes
 
-#  roles:
-#   - oefenweb.rstudio
-#   - infOpen.vagrant
+  - include_role:
+      name: gantsign.visual-studio-code
+    vars:
+      users:
+        - username: '{{ workstation_user }}'
+      visual_studio_code_extensions:
+        - streetsidesoftware.code-spell-checker
+        - ajshort.latex-preview
+        - ms-vscode.latex
+        - onecentlin.laravel-extension-pack
+        - onecentlin.laravel-blade
