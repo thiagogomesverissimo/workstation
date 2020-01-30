@@ -70,6 +70,30 @@
           - 'a.st1.ntp.br'
           - 'b.st1.ntp.br'
 
+    # pip 3 packages
+    - include_role:
+        name: geerlingguy.pip
+      vars:
+        pip_package: python3-pip
+        pip_install_packages:
+          - virtualenv
+          - numpy
+          - pandas
+          - ipython
+          - jupyter
+          - matplotlib
+          - hub
+
+    # pip 2 packages
+    - include_role:
+        name: geerlingguy.pip
+      vars:
+        pip_package: python-pip
+        pip_install_packages:
+          - oauth2client
+          - python-gflags
+          - google-api-python-client
+
     # php versions
     - name: Instala PHP versions
       include_role:
@@ -155,22 +179,6 @@
           - "3306"
           - "5432"
           - "8096"
-
-    # pip
-    - include_role:
-        name: geerlingguy.pip
-      vars:
-        pip_package: python3-pip
-        pip_install_packages:
-          - virtualenv
-          - numpy
-          - pandas
-          - ipython
-          - jupyter
-          - matplotlib
-          - hub
-          - python-gflags
-          - google-api-python-client
 
     # oh-my-zsh
     - include_role:
