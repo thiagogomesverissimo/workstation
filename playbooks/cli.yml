@@ -169,6 +169,8 @@
           - jupyter
           - matplotlib
           - hub
+          - python-gflags
+          - google-api-python-client
 
     # oh-my-zsh
     - include_role:
