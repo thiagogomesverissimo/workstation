@@ -62,3 +62,10 @@
         - ms-vscode.latex
         - onecentlin.laravel-extension-pack
         - onecentlin.laravel-blade
+        - donjayamanne.githistory
+        - waderyan.gitblame
+        - eamodio.gitlens
+        - mhutchie.git-graph
+        - felipecaputo.git-project-manager
+        - huizhou.githd
+        - shaharkazaz.git-merger
