@@ -6,7 +6,7 @@
 # fork that I sent PR and were not accepted
 - name: mmacia.vim
   src: https://github.com/thiagogomesverissimo/ansible-vim.git
-  version: install_force
+  version: master
 
 - name: ansible-role-phpcs
   src: https://github.com/thiagogomesverissimo/ansible-role-phpcs

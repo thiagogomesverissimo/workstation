@@ -38,6 +38,10 @@
     path: "{{workstation_home}}/.vimrc"
     line: 'colorscheme Tomorrow-Night'
 
+- lineinfile:
+    path: "{{workstation_home}}/.vimrc"
+    line: 'hi SpellBad ctermfg=red guifg=red'
+
 - name: vim fix permission
   file:
     path: "{{workstation_home}}/.vim/"
