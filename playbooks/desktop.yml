@@ -40,10 +40,12 @@
         - thunderbird
         - nautilus-dropbox
         - obs-studio
+        - remmina
         - chromium
         - simple-scan
         - virt-manager
         - libvirt-dev
+        - filezilla
 
   - name: adding existing user '{{ workstation_user }}' to group libvirt
     user:
