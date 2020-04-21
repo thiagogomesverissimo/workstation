@@ -220,7 +220,6 @@
           - 'stephpy/vim-php-cs-fixer'
           - 'sheerun/vim-polyglot'
           - 'Raimondi/delimitMate'
-          - 'vim-scripts/MatchTag'
           - 'godlygeek/tabular'
           - 'majutsushi/tagbar'
           - 'editorconfig/editorconfig-vim'
