@@ -41,11 +41,13 @@
         - nautilus-dropbox
         - obs-studio
         - remmina
+        - remmina-plugin-rdp
         - chromium
         - simple-scan
         - virt-manager
         - libvirt-dev
         - filezilla
+        - system-config-printer
 
   - name: adding existing user '{{ workstation_user }}' to group libvirt
     user:
