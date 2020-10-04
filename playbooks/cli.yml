@@ -104,12 +104,6 @@
       include_role:
         name: geerlingguy.php
 
-    # drush
-    - include_role:
-        name: geerlingguy.drush
-      vars:
-        drush_launcher_version: 0.6.0
-
     # composer
     - include_role:
         name: geerlingguy.composer
@@ -190,15 +184,15 @@
         zsh_ohmy_auto_update: true
         zsh_ohmy_plugins:
           - git
-          - git-flow
-          - docker
+#          - git-flow
+#          - docker
           - zsh-syntax-highlighting
           - zsh-autosuggestions
-          - pass
+#          - pass
           - tmux
-          - vagrant
+#          - vagrant
           - pip
-          - git-prompt
+#          - git-prompt
         zsh_ohmy_custom_themes:
           - name: powerlevel9k
             repo: "https://github.com/bhilburn/powerlevel9k.git"
