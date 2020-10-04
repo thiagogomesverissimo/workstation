@@ -28,6 +28,7 @@
       pkg:
         - transmission-gtk
         - terminator
+        - qtpass
         - brasero
         - gtkterm
         - vlc
