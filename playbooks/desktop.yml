@@ -63,15 +63,4 @@
         - username: '{{ workstation_user }}'
       visual_studio_code_extensions:
         - streetsidesoftware.code-spell-checker
-        - ajshort.latex-preview
-        - ms-vscode.latex
-        - onecentlin.laravel-extension-pack
-        - onecentlin.laravel-blade
-        - donjayamanne.githistory
-        - waderyan.gitblame
-        - eamodio.gitlens
-        - mhutchie.git-graph
-        - felipecaputo.git-project-manager
-        - huizhou.githd
-        - shaharkazaz.git-merger
         - dssiqueira.drupal-8-snippets

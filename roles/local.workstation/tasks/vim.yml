@@ -24,15 +24,15 @@
   with_items:
     - { url: 'https://raw.githubusercontent.com/chriskempson/tomorrow-theme/master/vim/colors/Tomorrow-Night.vim', name: 'Tomorrow-Night'}
 
-- composer:
-    command: install
-    working_dir: "{{workstation_home}}/.vim/bundle/phpactor"
-    no_dev: no
+#- composer:
+#    command: install
+#    working_dir: "{{workstation_home}}/.vim/bundle/phpactor"
+#    no_dev: no
 
-- file:
-    src: "{{workstation_home}}/.vim/bundle/phpactor/bin/phpactor"
-    dest: /usr/local/bin/phpactor
-    state: link
+#- file:
+#    src: "{{workstation_home}}/.vim/bundle/phpactor/bin/phpactor"
+#    dest: /usr/local/bin/phpactor
+#    state: link
 
 - lineinfile:
     path: "{{workstation_home}}/.vimrc"
