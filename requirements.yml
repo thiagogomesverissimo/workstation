@@ -8,12 +8,8 @@
   src: https://github.com/thiagogomesverissimo/ansible-vim.git
   version: master
 
-- name: ansible-role-phpcs
-  src: https://github.com/thiagogomesverissimo/ansible-role-phpcs
-  version: get-composer-bin-dir-from-user
-
 - src: geerlingguy.mysql
-  version: 2.9.5
+  version: 3.3.0
 
 - src: geerlingguy.nodejs
   version: 5.0.0
@@ -52,7 +48,7 @@
   version: 1.0.1
 
 - src: geerlingguy.postgresql
-  version: 2.0.1
+  version: 3.0.0
 
 - name: thiagogomesverissimo.vimspell
   src: https://github.com/thiagogomesverissimo/ansible-role-vimspell.git
@@ -60,9 +56,6 @@
 
 - src: infOpen.vagrant
   version: 0.3.0
-
-- src: zzet.rbenv
-  version: 3.4.7
 
 - src: geerlingguy.dotfiles
   version: 1.2.1

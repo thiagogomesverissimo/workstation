@@ -5,7 +5,6 @@
   hosts: localhost
 
   vars:
-
     # global vars
     workstation_user: thiago
     workstation_home: /home/thiago
@@ -69,7 +68,6 @@
           - ipython
           - jupyter
           - matplotlib
-#         - hub
 
     # pip 2 packages
     - include_role:
@@ -86,13 +84,13 @@
       include_role:
         name: geerlingguy.php-versions
       vars:
-        php_version: "7.3"
+        php_version: "7.4"
 
     - name: Instala PHP
       include_role:
         name: geerlingguy.php
       vars:
-        php_default_version_debian: '7.3'
+        php_default_version_debian: '7.4'
         php_enable_apc: false
         php_enable_webserver: false
         php_version: "{{php_default_version_debian}}"
@@ -116,27 +114,6 @@
         name: geerlingguy.composer
       vars:
         composer_keep_updated: True
-        composer_global_packages:
-          - name: squizlabs/php_codesniffer 
-          - name: drupal/coder
-          - name: dealerdirect/phpcodesniffer-composer-installer
-          - name: phpunit/phpunit
-          - name: friendsofphp/php-cs-fixer
-        composer_home_owner: "{{workstation_user}}"
-        composer_home_group: "{{workstation_user}}"
-        composer_project_path: "{{workstation_user}}/.composer/vendor/bin/"
-
-    # phpcs
-    - include_role:
-        name: ansible-role-phpcs
-      vars:
-        phpcs_config_set:
-          - 'encoding utf-8'
-          - 'colors 1'
-          - 'report_width 120'
-          - 'tab_width 4'
-          - 'installed_paths ~/.composer/vendor/drupal/coder/coder_sniffer'
-        phpcs_user: "{{workstation_user}}"
 
     # mysql
     - include_role:
@@ -160,13 +137,8 @@
         nodejs_npm_global_packages:
           - name: yo
           - name: reveal
-#         - name: prez
-#         - name: generator-jhipster
-#         - name: gulp-cli
-#         - name: generator-webapp
           - name: webpack
           - name: webpack-cli
-#         - name: mermaid.cli
 
     # firewall
     - include_role:
@@ -178,7 +150,6 @@
           - "631"
           - "3306"
           - "5432"
-          - "8096"
 
     # oh-my-zsh
     - include_role:
@@ -190,15 +161,12 @@
         zsh_ohmy_auto_update: true
         zsh_ohmy_plugins:
           - git
-#          - git-flow
-#          - docker
           - zsh-syntax-highlighting
           - zsh-autosuggestions
-#          - pass
+          - pass
           - tmux
-#          - vagrant
+          - vagrant
           - pip
-#          - git-prompt
         zsh_ohmy_custom_themes:
           - name: powerlevel9k
             repo: "https://github.com/bhilburn/powerlevel9k.git"
@@ -216,18 +184,6 @@
         vim_plugins:
           - 'mattn/emmet-vim'
           - 'scrooloose/nerdtree'
-#          - 'adoy/vim-php-refactoring-toolbox'
-#          - 'stephpy/vim-php-cs-fixer'
-#          - 'sheerun/vim-polyglot'
-#          - 'Raimondi/delimitMate'
-#          - 'godlygeek/tabular'
-#          - 'majutsushi/tagbar'
-#          - 'editorconfig/editorconfig-vim'
-#          - 'altercation/vim-colors-solarized'
-#          - 'phpactor/phpactor'
-#          - 'artur-shaik/vim-javacomplete2'
-#          - 'airblade/vim-rooter'
-#          - 'farconics/victionary'
 
     # java
     - include_role:
@@ -258,20 +214,6 @@
             db: template1
             port: 5432
 
-    # rbenv
-    - include_role:
-        name: zzet.rbenv
-      vars:
-        rbenv:
-          env: user
-          version: v1.0.0
-          default_ruby: 2.5.1
-          rubies:
-            - version: 2.4.2
-            - version: 2.5.1
-        rbenv_users:
-         - "{{ workstation_user }}"
-
     # docker
     - include_role:
         name: geerlingguy.docker
@@ -279,19 +221,6 @@
         docker_compose_version: 1.24.1
         docker_users:
           - "{{workstation_user}}"
-
-#    # R
-#    - include_role:
-#        name: oefenweb.r
-#      vars:
-#        r_install_dev: true
-#        r_install:
-#          - "r-recommended"
-#        r_packages:
-#          - name: dplyr
-#          - name: "davidcarslaw/openair"
-#            type: github
-#
 
     # workstation
     - include_role:
