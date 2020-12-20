@@ -24,7 +24,6 @@ Dependencies:
     sudo apt-get install dirmngr openssh-server git gnupg2
     echo "deb http://ppa.launchpad.net/ansible/ansible/ubuntu bionic main" | sudo tee /etc/apt/sources.list.d/ansible.list
 
-
 Add the key:
     
     sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367
@@ -42,6 +41,24 @@ Add the key:
 ## cli only:
 
     ansible-playbook playbooks/cli.yml
+
+## vagrant install
+
+Take .deb package at https://www.vagrantup.com/downloads.html and:
+
+    sudo apt install ./vagrant_2.2.14_x86_64.deb
+
+libvirt plugin for vagrant:
+
+    $ vagrant plugin install vagrant-libvirt
+    $ vagrant plugin list
+
+Some boxes I like:
+
+    vagrant box add generic/debian9 --provider=libvirt
+    vagrant box add generic/debian10 --provider=libvirt
+    vagrant box add generic/ubuntu1604 --provider=libvirt
+    vagrant box add generic/ubuntu1804 --provider=libvirt
 
 ## test cli.yml playbook at VM:
 
@@ -70,53 +87,3 @@ Inside VM, allows root ssh using your key:
     cat /home/thiago/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
     chmod -R 600 /root/.ssh
     chmod 700 /root/.ssh
-
-## Acões feitas manualmente temporariamente:
-
-### Instalação das coisas do java:
-
-    curl -s https://get.sdkman.io | zsh
-    sdk install java
-    sdk use java 8.0.181-zulu
-    sdk install springboot
-    sdk install groovy
-    sdk install gradle
-    sdk install maven
-    sdk current
-
-### Instalação do Spring Tool Suite.
-
- - link no lançador
- - black theme
- - aumentar a fonte
-
-### Trocar fonte no terminal para Hack NF Relugar
-
-### dev env:
-
-	scp -i /home/thiago/.vagrant.d/insecure_private_key -r ~/.ssh vagrant@192.168.100.200:ssh
-	vagrant ssh
-	sudo su
-	mv /home/vagrant/ssh /root/.ssh
-	chown -R root:root /root/.ssh
-	adduser thiago
-	addgroup thiago sudo
-
-
-### Instalações manuais:
-
-Vagrant:
-
-    https://www.vagrantup.com/downloads.html
-
-Instalação do plugin libvirt para vagrant:
-
-    $ vagrant plugin install vagrant-libvirt
-    $ vagrant plugin list
-
-Instalação de boxes que uso normalmente:
-
-    vagrant box add generic/debian9 --provider=libvirt
-    vagrant box add generic/debian10 --provider=libvirt
-    vagrant box add generic/ubuntu1604 --provider=libvirt
-    vagrant box add generic/ubuntu1804 --provider=libvirt

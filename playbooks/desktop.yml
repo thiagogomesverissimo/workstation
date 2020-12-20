@@ -5,7 +5,6 @@
 
   vars:
     vagrant_package_version: '2.2.6'
-    rstudio_version: "1.2.5033"
     workstation_user: thiago
 
   tasks:

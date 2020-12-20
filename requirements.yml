@@ -35,9 +35,6 @@
 - src: geerlingguy.java
   version: 1.9.7
 
-- src: oefenweb.rstudio
-  version: v2.2.8
-
 - src: infOpen.locales
   version: master
 
@@ -47,22 +44,12 @@
 - src: adriagalin.timezone
   version: 1.0.1
 
-- src: geerlingguy.postgresql
-  version: 3.0.0
-
 - name: thiagogomesverissimo.vimspell
   src: https://github.com/thiagogomesverissimo/ansible-role-vimspell.git
   version: 1.0.0
-
-- src: infOpen.vagrant
-  version: 0.3.0
 
 - src: geerlingguy.dotfiles
   version: 1.2.1
 
 - src: gantsign.visual-studio-code
   version: 6.3.1
-
-#- name: oefenweb.r
-#  src: https://github.com/thiagogomesverissimo/ansible-r.git
-#  version: debian9

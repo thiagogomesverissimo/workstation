@@ -12,7 +12,7 @@
   tasks:
 
     # general packages
-    - name: install general packages
+    - name: install general apt packages
       apt:
         name: "{{ packages }}"
         update_cache: yes
@@ -26,6 +26,14 @@
           - rar
           - unrar
           - git
+
+    - name: Make sure pip packages are  present
+      pip:
+        name: "{{ packages }}"
+        state: present
+      vars:
+        packages:
+          - pymysql
 
     # Configuração do timezone são paulo
     - include_role:
@@ -55,6 +63,19 @@
         ntp_servers:
           - 'a.st1.ntp.br'
           - 'b.st1.ntp.br'
+
+    # mysql
+    - include_role:
+        name: geerlingguy.mysql
+      vars:
+        mysql_root_username: root
+        mysql_root_password: master
+        mysql_bind_address: '*'
+        mysql_users:
+          - name: master
+            host: "%"
+            password: master
+            priv: "*.*:ALL,GRANT"
 
     # pip 3 packages
     - include_role:
@@ -114,19 +135,6 @@
         name: geerlingguy.composer
       vars:
         composer_keep_updated: True
-
-    # mysql
-    - include_role:
-        name: geerlingguy.mysql
-      vars:
-        mysql_root_username: root
-        mysql_root_password: master
-        mysql_bind_address: '*'
-        mysql_users:
-          - name: master
-            host: "%"
-            password: master
-            priv: "*.*:ALL,GRANT"
 
     # nodejs
     - include_role:
@@ -199,20 +207,6 @@
           - pt
           - es
           - en
-
-    # postgresql
-    - include_role:
-        name: geerlingguy.postgresql
-      vars:
-        postgresql_locales:
-          - 'pt_BR.UTF-8'
-        postgresql_users:
-          - name: master
-            password: 'master'
-            encrypted: True
-            role_attr_flags: SUPERUSER
-            db: template1
-            port: 5432
 
     # docker
     - include_role:
