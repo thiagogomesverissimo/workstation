@@ -27,12 +27,18 @@
           - unrar
           - git
 
-    - name: Make sure pip packages are  present
-      pip:
-        name: "{{ packages }}"
-        state: present
+    # pip 3 packages
+    - include_role:
+        name: geerlingguy.pip
       vars:
-        packages:
+        pip_package: python3-pip
+        pip_install_packages:
+          - virtualenv
+          - numpy
+          - pandas
+          - ipython
+          - jupyter
+          - matplotlib
           - pymysql
 
     # Configuração do timezone são paulo
@@ -76,19 +82,6 @@
             host: "%"
             password: master
             priv: "*.*:ALL,GRANT"
-
-    # pip 3 packages
-    - include_role:
-        name: geerlingguy.pip
-      vars:
-        pip_package: python3-pip
-        pip_install_packages:
-          - virtualenv
-          - numpy
-          - pandas
-          - ipython
-          - jupyter
-          - matplotlib
 
     # pip 2 packages
     - include_role:
