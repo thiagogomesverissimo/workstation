@@ -98,13 +98,13 @@
       include_role:
         name: geerlingguy.php-versions
       vars:
-        php_version: "7.4"
+        php_version: "7.3"
 
     - name: Instala PHP
       include_role:
         name: geerlingguy.php
       vars:
-        php_default_version_debian: '7.4'
+        php_default_version_debian: '7.3'
         php_enable_apc: false
         php_enable_webserver: false
         php_version: "{{php_default_version_debian}}"
