@@ -48,6 +48,7 @@
         - libvirt-dev
         - filezilla
         - system-config-printer
+        - drawing
 
   - name: adding existing user '{{ workstation_user }}' to group libvirt
     user:
