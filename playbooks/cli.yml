@@ -123,6 +123,13 @@
           - php{{ php_default_version_debian }}-gd
           - php{{ php_default_version_debian }}-zip
 
+    - name: php cli unlimited
+      lineinfile:
+        path: /etc/php/7.3/cli/php.ini
+        regexp: 'memory_limit'
+        line: 'memory_limit = -1'
+        backrefs: yes
+
     # composer
     - include_role:
         name: geerlingguy.composer
