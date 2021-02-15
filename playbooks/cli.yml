@@ -27,6 +27,16 @@
           - unrar
           - git
 
+    # pip 2 packages
+#    - include_role:
+#        name: geerlingguy.pip
+#      vars:
+#        pip_package: python-pip
+#        pip_install_packages:
+#          - oauth2client
+#          - python-gflags
+#          - google-api-python-client
+
     # pip 3 packages
     - include_role:
         name: geerlingguy.pip
@@ -42,7 +52,6 @@
           - pymysql
 
     # Configuração do timezone são paulo
-    - include_role:
         name: adriagalin.timezone
       vars:
         ag_timezone: 'America/Sao_Paulo'
@@ -82,16 +91,6 @@
             host: "%"
             password: master
             priv: "*.*:ALL,GRANT"
-
-    # pip 2 packages
-    - include_role:
-        name: geerlingguy.pip
-      vars:
-        pip_package: python-pip
-        pip_install_packages:
-          - oauth2client
-          - python-gflags
-          - google-api-python-client
 
     # php versions
     - name: Instala PHP versions
