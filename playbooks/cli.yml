@@ -26,6 +26,7 @@
           - rar
           - unrar
           - git
+          - curl
 
     # pip 2 packages
 #    - include_role:
