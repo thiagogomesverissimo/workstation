@@ -98,13 +98,13 @@
       include_role:
         name: geerlingguy.php-versions
       vars:
-        php_version: "7.3"
+        php_version: "7.4"
 
     - name: Instala PHP
       include_role:
         name: geerlingguy.php
       vars:
-        php_default_version_debian: '7.3'
+        php_default_version_debian: '7.4'
         php_enable_apc: false
         php_enable_webserver: false
         php_version: "{{php_default_version_debian}}"
@@ -125,7 +125,7 @@
 
     - name: php cli unlimited
       lineinfile:
-        path: /etc/php/7.3/cli/php.ini
+        path: /etc/php/7.4/cli/php.ini
         regexp: 'memory_limit'
         line: 'memory_limit = -1'
         backrefs: yes
