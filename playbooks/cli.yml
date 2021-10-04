@@ -85,14 +85,18 @@
         name: geerlingguy.mysql
       vars:
         mysql_root_username: root
-        mysql_root_password: master
+        mysql_root_password: admin
         mysql_bind_address: '*'
         mysql_users:
           - name: master
             host: "%"
             password: master
             priv: "*.*:ALL,GRANT"
-
+          - name: admin
+            host: "%"
+            password: admin
+            priv: "*.*:ALL,GRANT"
+            
     # php versions
     - name: Instala PHP versions
       include_role:
