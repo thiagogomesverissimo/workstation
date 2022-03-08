@@ -50,6 +50,7 @@
         - system-config-printer
         - pdfgrep
         - pdftk
+        - xournal # para escrever em pdfs com caneta laser
 #        - drawing
 
   - name: adding existing user '{{ workstation_user }}' to group libvirt
