@@ -84,15 +84,22 @@
     - include_role:
         name: geerlingguy.mysql
       vars:
+        mysql_packages:
+          - mariadb-client
+          - mariadb-server
         mysql_root_username: root
-        mysql_root_password: master
+        mysql_root_password: admin
         mysql_bind_address: '*'
         mysql_users:
           - name: master
             host: "%"
             password: master
             priv: "*.*:ALL,GRANT"
-
+          - name: admin
+            host: "%"
+            password: admin
+            priv: "*.*:ALL,GRANT"
+            
     # php versions
     - name: Instala PHP versions
       include_role:
@@ -138,16 +145,16 @@
         composer_version_branch: '--1'
 
     # nodejs
-    - include_role:
-        name: geerlingguy.nodejs
-      vars:
-        nodejs_version: "10.x"
-        nodejs_install_npm_user: "{{ workstation_user }}"
-        nodejs_npm_global_packages:
-          - name: yo
-          - name: reveal
-          - name: webpack
-          - name: webpack-cli
+    #- include_role:
+    #    name: geerlingguy.nodejs
+    #  vars:
+    #    nodejs_version: "17.x"
+    #    nodejs_install_npm_user: "{{ workstation_user }}"
+    #    nodejs_npm_global_packages:
+    #      - name: yo
+    #      - name: reveal
+    #      - name: webpack
+    #      - name: webpack-cli
 
     # firewall
     - include_role:
@@ -195,8 +202,8 @@
           - 'scrooloose/nerdtree'
 
     # java
-    - include_role:
-        name: geerlingguy.java
+    #- include_role:
+    #    name: geerlingguy.java
 
     # vim spell
     - include_role:
@@ -210,12 +217,12 @@
           - en
 
     # docker
-    - include_role:
-        name: geerlingguy.docker
-      vars:
-        docker_compose_version: 1.24.1
-        docker_users:
-          - "{{workstation_user}}"
+    #- include_role:
+    #    name: geerlingguy.docker
+    #  vars:
+    #    docker_compose_version: 1.24.1
+    #    docker_users:
+    #      - "{{workstation_user}}"
 
     # workstation
     - include_role:
