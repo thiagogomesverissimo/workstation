@@ -27,6 +27,7 @@
           - unrar
           - git
           - curl
+          - python2
 
     # firewall
     - include_role:
@@ -49,7 +50,7 @@
 #    - include_role:
 #        name: geerlingguy.pip
 #      vars:
-#        pip_package: python-pip
+#        pip_executable: python-pip
 #        pip_install_packages:
 #          - oauth2client
 #          - python-gflags
@@ -191,7 +192,7 @@
       vars:
         zsh_users:
          - "{{workstation_user}}"
-        zsh_ohmy_theme: "romkatv/powerlevel10k"
+        zsh_ohmy_theme: "powerlevel10k/powerlevel10k"
         zsh_ohmy_auto_update: true
         zsh_ohmy_plugins:
           - git
