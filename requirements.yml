@@ -1,48 +1,49 @@
-# Não lembro pq fixei nessa versão
-- name: vaulttec.zsh
-  src: https://github.com/vaulttec/ansible-role-zsh.git
-  version: 5b518747c6d3791e936dce678afa7
-
-# fork that I sent PR and were not accepted
+# Fork that I sent PR and were not accepted
 - name: mmacia.vim
   src: https://github.com/thiagogomesverissimo/ansible-vim.git
   version: master
+  
+- name: vaulttec.zsh
+  src: https://github.com/thiagogomesverissimo/ansible-role-zsh.git
+  version: 1.0.0
+
+# Comunidade
 
 - src: geerlingguy.mysql
-  version: 3.3.0
+  version: 3.3.2
 
 - src: geerlingguy.nodejs
   version: 6.0.0
 
 - src: geerlingguy.php
-  version: 3.7.0
+  version: 4.8.0
 
 - src: geerlingguy.php-versions
-  version: 4.0.2
+  version: 5.0.0
 
 - src: geerlingguy.composer
   version: 1.9.0
 
 - src: geerlingguy.firewall
-  version: 2.4.2
+  version: 2.5.0
 
 - src: geerlingguy.docker
-  version: 2.9.0
+  version: 4.1.3
 
 - src: geerlingguy.pip
   version: 2.1.0
 
 - src: geerlingguy.java
-  version: 1.10.0
+  version: 2.0.1
 
 - src: infOpen.locales
   version: master
 
 - src: geerlingguy.ntp
-  version: 1.6.4
+  version: 2.3.1
 
 - src: adriagalin.timezone
-  version: 1.0.1
+  version: 4.0.0
 
 - name: thiagogomesverissimo.vimspell
   src: https://github.com/thiagogomesverissimo/ansible-role-vimspell.git
@@ -52,4 +53,4 @@
   version: 1.2.1
 
 - src: gantsign.visual-studio-code
-  version: 6.3.1
+  version: 6.8.0

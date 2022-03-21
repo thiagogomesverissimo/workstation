@@ -10,7 +10,7 @@
     workstation_home: /home/thiago
 
   tasks:
-
+        
     # general packages
     - name: install general apt packages
       apt:
@@ -28,7 +28,24 @@
           - git
           - curl
 
-    # pip 2 packages
+    # firewall
+    - include_role:
+        name: geerlingguy.firewall
+      vars:
+        firewall_allowed_tcp_ports:
+          - "22"
+          - "80"
+          - "631"
+          - "3306"
+          - "5432"
+          - "5432"
+          - "47121"
+
+    # java
+    - include_role:
+        name: geerlingguy.java
+
+#    # pip 2 packages
 #    - include_role:
 #        name: geerlingguy.pip
 #      vars:
@@ -99,7 +116,7 @@
             host: "%"
             password: admin
             priv: "*.*:ALL,GRANT"
-            
+
     # php versions
     - name: Instala PHP versions
       include_role:
@@ -129,7 +146,8 @@
           - php{{ php_default_version_debian }}-xml
           - php{{ php_default_version_debian }}-gd
           - php{{ php_default_version_debian }}-zip
-
+          - php{{ php_default_version_debian }}-soap
+          
     - name: php cli unlimited
       lineinfile:
         path: /etc/php/7.4/cli/php.ini
@@ -142,52 +160,7 @@
         name: geerlingguy.composer
       vars:
         composer_keep_updated: True
-        composer_version_branch: '--1'
-
-    # nodejs
-    #- include_role:
-    #    name: geerlingguy.nodejs
-    #  vars:
-    #    nodejs_version: "17.x"
-    #    nodejs_install_npm_user: "{{ workstation_user }}"
-    #    nodejs_npm_global_packages:
-    #      - name: yo
-    #      - name: reveal
-    #      - name: webpack
-    #      - name: webpack-cli
-
-    # firewall
-    - include_role:
-        name: geerlingguy.firewall
-      vars:
-        firewall_allowed_tcp_ports:
-          - "22"
-          - "80"
-          - "631"
-          - "3306"
-          - "5432"
-
-    # oh-my-zsh
-    - include_role:
-        name: vaulttec.zsh
-      vars:
-        zsh_users:
-         - "{{workstation_user}}"
-        zsh_ohmy_theme: "powerlevel9k/powerlevel9k"
-        zsh_ohmy_auto_update: true
-        zsh_ohmy_plugins:
-          - git
-          - zsh-syntax-highlighting
-          - zsh-autosuggestions
-          - pass
-          - tmux
-          - vagrant
-          - pip
-        zsh_ohmy_custom_themes:
-          - name: powerlevel9k
-            repo: "https://github.com/bhilburn/powerlevel9k.git"
-          - name: spaceship
-            repo: "https://github.com/denysdovhan/spaceship-prompt.git"
+        composer_version_branch: '--2'
 
     # vim
     - include_role:
@@ -201,10 +174,6 @@
           - 'mattn/emmet-vim'
           - 'scrooloose/nerdtree'
 
-    # java
-    #- include_role:
-    #    name: geerlingguy.java
-
     # vim spell
     - include_role:
         name: thiagogomesverissimo.vimspell
@@ -215,15 +184,48 @@
           - pt
           - es
           - en
+    
+      # oh-my-zsh
+    - include_role:
+        name: vaulttec.zsh
+      vars:
+        zsh_users:
+         - "{{workstation_user}}"
+        zsh_ohmy_theme: "romkatv/powerlevel10k"
+        zsh_ohmy_auto_update: true
+        zsh_ohmy_plugins:
+          - git
+          - zsh-syntax-highlighting
+          - zsh-autosuggestions
+          - pass
+          - tmux
+          - vagrant
+          - pip
+        zsh_ohmy_custom_themes:
+          - name: powerlevel10k
+            repo: "https://github.com/romkatv/powerlevel10k.git"
+          - name: spaceship
+            repo: "https://github.com/spaceship-prompt/spaceship-prompt.git"
+            
+    # nodejs
+    - include_role:
+        name: geerlingguy.nodejs
+      vars:
+        nodejs_version: "17.x"
+        nodejs_install_npm_user: "{{ workstation_user }}"
+        nodejs_npm_global_packages:
+          - name: yo
+          - name: reveal
+          - name: webpack
+          - name: webpack-cli
 
     # docker
-    #- include_role:
-    #    name: geerlingguy.docker
-    #  vars:
-    #    docker_compose_version: 1.24.1
-    #    docker_users:
-    #      - "{{workstation_user}}"
-
+    - include_role:
+        name: geerlingguy.docker
+      vars:
+        docker_users:
+          - "{{workstation_user}}"      
+          
     # workstation
     - include_role:
         name: local.workstation
