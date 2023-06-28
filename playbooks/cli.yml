@@ -28,6 +28,7 @@
           - git
           - curl
           - python2
+          - nfs-kernel-serve # para vagrant
 
     # firewall
     - include_role:
