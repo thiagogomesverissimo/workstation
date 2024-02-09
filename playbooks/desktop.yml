@@ -4,7 +4,6 @@
   become: yes
 
   vars:
-    vagrant_package_version: '2.2.6'
     workstation_user: thiago
 
   tasks:
@@ -45,6 +44,7 @@
         - simple-scan
         - virt-manager
         - libvirt-dev
+        - libvirt
         - filezilla
         - system-config-printer
         - pdfgrep
@@ -57,12 +57,3 @@
       name: '{{ workstation_user }}'
       groups: libvirt
       append: yes
-
-  - include_role:
-      name: gantsign.visual-studio-code
-    vars:
-      users:
-        - username: '{{ workstation_user }}'
-      visual_studio_code_extensions:
-        - streetsidesoftware.code-spell-checker
-        - dssiqueira.drupal-8-snippets

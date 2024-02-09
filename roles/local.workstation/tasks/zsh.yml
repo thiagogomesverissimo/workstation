@@ -17,23 +17,12 @@
   args:
     chdir: "{{ workstation_home }}/.fzf"
 
-- name: fonts dir
-  file:
-    path: "{{ workstation_home }}/.fonts/"
-    state: directory
-
-- name: download fonts
-  unarchive:
-    src: "https://github.com/ryanoasis/nerd-fonts/releases/download/v2.0.0/Hack.zip"
-    dest: "{{ workstation_home }}/.fonts/"
-    remote_src: yes
-
-- name: fix owner fonts dir
-  file:
-    path: "{{ workstation_home }}/.fonts/"
-    state: directory
-    owner: "{{ workstation_user}}"
-    group: "{{ workstation_user}}"
+- name: Template p10k.zsh
+  copy:
+    src: p10k.zsh
+    dest: "{{ workstation_home }}/.p10k.zsh"
+    owner: "{{workstation_user}}"
+    group: "{{workstation_user}}"
 
 - lineinfile:
     path: "{{ workstation_home }}/.zshrc"

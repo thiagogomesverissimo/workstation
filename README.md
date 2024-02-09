@@ -17,6 +17,8 @@ So, authorize it in the root:
     chmod -R 600 /root/.ssh
     chmod 700 /root/.ssh
 
+INSTALAR pyenv
+
 ## Ansible install on debian 10:
 
 Dependencies:
