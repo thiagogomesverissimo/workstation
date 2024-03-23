@@ -51,6 +51,7 @@
         - pdfgrep
         - pdftk
         - xournal # para escrever em pdfs com caneta laser
+        - texstudio
 #        - drawing
 
   - name: adding existing user '{{ workstation_user }}' to group libvirt
