@@ -19,12 +19,11 @@ So, authorize it in the root:
 
 INSTALAR pyenv
 
-## Ansible install on debian 10:
-
 Dependencies:
 
-    sudo apt-get install dirmngr openssh-server git gnupg2
-    echo "deb http://ppa.launchpad.net/ansible/ansible/ubuntu bionic main" | sudo tee /etc/apt/sources.list.d/ansible.list
+    sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
+libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
+xz-utils tk-dev libffi-dev liblzma-dev
 
 Add the key:
     

@@ -47,7 +47,7 @@
 
 - name: thiagogomesverissimo.vimspell
   src: https://github.com/thiagogomesverissimo/ansible-role-vimspell.git
-  version: 1.0.0
+  version: master
 
 - src: geerlingguy.dotfiles
   version: 1.2.1
