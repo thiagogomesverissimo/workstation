@@ -133,7 +133,8 @@
       vars:
         zsh_users:
          - "{{workstation_user}}"
-        zsh_ohmy_theme: "powerlevel10k/powerlevel10k"
+        #zsh_ohmy_theme: "powerlevel10k/powerlevel10k"
+        zsh_ohmy_theme: "robbyrussell"
         zsh_ohmy_auto_update: true
         zsh_ohmy_plugins:
           - git
