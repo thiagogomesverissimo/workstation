@@ -44,27 +44,27 @@
          - pymysql
 
     # vim
-#    - include_role:
-#        name: mmacia.vim
-#      vars:
-#        vim_env: user
-#        vim_users:
-#          - "{{workstation_user}}"
-#        vimrc_recommended: false
-#        vim_plugins:
-#          - 'mattn/emmet-vim'
-#          - 'scrooloose/nerdtree'
+    - include_role:
+        name: mmacia.vim
+      vars:
+        vim_env: user
+        vim_users:
+          - "{{workstation_user}}"
+        vimrc_recommended: false
+        vim_plugins:
+          - 'mattn/emmet-vim'
+          - 'scrooloose/nerdtree'
 
     # vim spell
-#    - include_role:
-#        name: thiagogomesverissimo.vimspell
-#      vars:
-#        vimspell_home: "{{workstation_home}}"
-#        vimspell_user: "{{workstation_user}}"
-#        vimspell_languages:
-#          - pt
-#          - es
-#          - en
+    - include_role:
+        name: thiagogomesverissimo.vimspell
+      vars:
+        vimspell_home: "{{workstation_home}}"
+        vimspell_user: "{{workstation_user}}"
+        vimspell_languages:
+          - pt
+          - es
+          - en
 
     # docker
     - include_role:
