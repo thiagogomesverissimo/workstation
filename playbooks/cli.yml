@@ -43,89 +43,35 @@
          - matplotlib
          - pymysql
 
-   # mysql
-    - include_role:
-        name: geerlingguy.mysql
-      vars:
-        mysql_packages:
-          - mariadb-client
-          - mariadb-server
-        mysql_root_username: root
-        mysql_root_password: admin
-        mysql_bind_address: '*'
-        mysql_users:
-          - name: admin
-            host: "%"
-            password: admin
-            priv: "*.*:ALL,GRANT"
-
-    # php versions
-    - name: Instala PHP versions
-      include_role:
-        name: geerlingguy.php-versions
-      vars:
-        php_version: "8.2"
-
-    - name: Instala PHP
-      include_role:
-        name: geerlingguy.php
-      vars:
-        php_default_version_debian: '8.2'
-        php_enable_apc: false
-        php_enable_webserver: false
-        php_version: "{{php_default_version_debian}}"
-        php_packages_extra:
-          - memcached
-          - php{{ php_default_version_debian }}-mbstring
-          - php{{ php_default_version_debian }}-curl
-          - php{{ php_default_version_debian }}-ldap
-          - php{{ php_default_version_debian }}-bcmath
-          - php{{ php_default_version_debian }}-pgsql
-          - php{{ php_default_version_debian }}-mysql
-          - php{{ php_default_version_debian }}-sqlite3
-          - php{{ php_default_version_debian }}-sybase
-          - php{{ php_default_version_debian }}-memcached
-          - php{{ php_default_version_debian }}-xml
-          - php{{ php_default_version_debian }}-gd
-          - php{{ php_default_version_debian }}-zip
-          - php{{ php_default_version_debian }}-soap
-          
-    - name: php cli unlimited
-      lineinfile:
-        path: /etc/php/8.2/cli/php.ini
-        regexp: 'memory_limit'
-        line: 'memory_limit = -1'
-        backrefs: yes
-
-    # composer
-    - include_role:
-        name: geerlingguy.composer
-      vars:
-        composer_keep_updated: True
-        composer_version_branch: '--2'
-
     # vim
-    - include_role:
-        name: mmacia.vim
-      vars:
-        vim_env: user
-        vim_users:
-          - "{{workstation_user}}"
-        vimrc_recommended: false
-        vim_plugins:
-          - 'mattn/emmet-vim'
-          - 'scrooloose/nerdtree'
+#    - include_role:
+#        name: mmacia.vim
+#      vars:
+#        vim_env: user
+#        vim_users:
+#          - "{{workstation_user}}"
+#        vimrc_recommended: false
+#        vim_plugins:
+#          - 'mattn/emmet-vim'
+#          - 'scrooloose/nerdtree'
 
     # vim spell
+#    - include_role:
+#        name: thiagogomesverissimo.vimspell
+#      vars:
+#        vimspell_home: "{{workstation_home}}"
+#        vimspell_user: "{{workstation_user}}"
+#        vimspell_languages:
+#          - pt
+#          - es
+#          - en
+
+    # docker
     - include_role:
-        name: thiagogomesverissimo.vimspell
+        name: geerlingguy.docker
       vars:
-        vimspell_home: "{{workstation_home}}"
-        vimspell_user: "{{workstation_user}}"
-        vimspell_languages:
-          - pt
-          - es
-          - en
+        docker_users:
+          - "{{workstation_user}}"
     
       # oh-my-zsh
     - include_role:
@@ -133,7 +79,6 @@
       vars:
         zsh_users:
          - "{{workstation_user}}"
-        #zsh_ohmy_theme: "powerlevel10k/powerlevel10k"
         zsh_ohmy_theme: "robbyrussell"
         zsh_ohmy_auto_update: true
         zsh_ohmy_plugins:
@@ -150,86 +95,7 @@
           - name: spaceship
             repo: "https://github.com/spaceship-prompt/spaceship-prompt.git"
 
-    # docker
-    - include_role:
-        name: geerlingguy.docker
-      vars:
-        docker_users:
-          - "{{workstation_user}}"      
-          
+
     # workstation
     - include_role:
         name: local.workstation
-
-    # firewall
-    # - include_role:
-    #     name: geerlingguy.firewall
-    #   vars:
-    #     firewall_allowed_tcp_ports:
-    #       - "22"
-    #       - "80"
-    #       - "631"
-    #       - "3306"
-    #       - "5432"
-    #       - "5432"
-    #       - "47121"
-
-    # java
-#    - include_role:
-#        name: geerlingguy.java
-
-#    # pip 2 packages
-#    - include_role:
-#        name: geerlingguy.pip
-#      vars:
-#        pip_executable: python-pip
-#        pip_install_packages:
-#          - oauth2client
-#          - python-gflags
-#          - google-api-python-client
-
-
-
-    # # Configuração do timezone são paulo
-    #     name: adriagalin.timezone
-    #   vars:
-    #     ag_timezone: 'America/Sao_Paulo'
-
-    # locales como pt-br
-    # - include_role:
-    #     name: infOpen.locales
-    #   vars:
-    #     locales_to_configure:
-    #       - name: 'en_US.UTF-8'
-    #         modifier: 'UTF-8'
-    #       - name: 'pt_BR.UTF-8'
-    #         modifier: 'UTF-8'
-    #     locales_defaults:
-    #       LANG: 'pt_BR.UTF-8'
-    #       LC_CTYPE: 'pt_BR.UTF-8'
-    #       LANGUAGE: 'pt_BR.UTF-8'
-
-    # ntp
-    # - include_role:
-    #     name: geerlingguy.ntp
-    #   vars:
-    #     ntp_timezone: 'America/Sao_Paulo'
-    #     ntp_servers:
-    #       - 'a.st1.ntp.br'
-    #       - 'b.st1.ntp.br'
-
-
-            
-    # # nodejs
-    # - include_role:
-    #     name: geerlingguy.nodejs
-    #   vars:
-    #     nodejs_version: "17.x"
-    #     nodejs_install_npm_user: "{{ workstation_user }}"
-    #     nodejs_npm_global_packages:
-    #       - name: yo
-    #       - name: reveal
-    #       - name: webpack
-    #       - name: webpack-cli
-
-

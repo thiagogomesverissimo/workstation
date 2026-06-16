@@ -9,41 +9,14 @@
 
 # Comunidade
 
-- src: geerlingguy.mysql
-  version: 4.3.4
-
-- src: geerlingguy.nodejs
-  version: 6.0.0
-
-- src: geerlingguy.php
-  version: 5.0.1
-
-- src: geerlingguy.php-versions
-  version: 6.0.1
-
-- src: geerlingguy.composer
-  version: 1.9.2
-
-- src: geerlingguy.firewall
-  version: 2.5.0
-
 - src: geerlingguy.docker
-  version: 7.1.0
+  version: 8.0.0
 
 - src: geerlingguy.pip
-  version: 3.0.2
-
-- src: geerlingguy.java
-  version: 2.0.1
+  version: 3.1.2
 
 - src: infOpen.locales
   version: master
-
-- src: geerlingguy.ntp
-  version: 2.3.1
-
-- src: adriagalin.timezone
-  version: 4.0.0
 
 - name: thiagogomesverissimo.vimspell
   src: https://github.com/thiagogomesverissimo/ansible-role-vimspell.git
@@ -51,6 +24,3 @@
 
 - src: geerlingguy.dotfiles
   version: 1.2.1
-
-- src: gantsign.visual-studio-code
-  version: 6.8.0

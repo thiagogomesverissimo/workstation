@@ -7,3 +7,5 @@
 
 roles/*
 !roles/local.*
+
+venv

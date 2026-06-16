@@ -3,7 +3,7 @@
   apt:
     update_cache: yes
 
-- import_tasks: vim.yml
+#- import_tasks: vim.yml
 - import_tasks: zsh.yml
 - import_tasks: dotfiles.yml
 

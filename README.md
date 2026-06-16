@@ -1,35 +1,26 @@
 # workstation
 
-Recursos desse repo: 
+1 - configura ssh
 
-    ansible-galaxy install -r requirements.yml
-    ansible-playbook playbooks/desktop.yml
-    ansible-playbook playbooks/cli.yml
+2 - colocar no /etc/apt/source.list: contrib non-free
 
-## test cli.yml playbook at VM:
+2 - Instalação
 
-Create your user at VM:
-      
-    vagrant ssh
-    sudo adduser thiago
+    sudo apt install python3-venv
+    python3 -m venv venv
+    source venv/bin/activate
+    ./venv/bin/pip3 install -r requirements.txt
 
-Enable password authentication at VM editing /etc/ssh/sshd_config:
+    ./venv/bin/ansible-galaxy install -r requirements.yml --force
+    ./venv/bin/ansible-playbook playbooks/desktop.yml
+    ./venv/bin/ansible-playbook playbooks/cli.yml
 
-    PasswordAuthentication yes
 
-Restart ssh:
+3 -  Manuais
 
-    sudo service ssh restart
-
-Create new ssh keys or copy from your computer:
-
-    scp -r ~/.ssh thiago@192.168.100.200:
-
-Inside VM, allows root ssh using your key:
-    
-    vagrant ssh
-    sudo su
-    mkdir /root/.ssh
-    cat /home/thiago/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
-    chmod -R 600 /root/.ssh
-    chmod 700 /root/.ssh
+- Instalação do .deb chrome
+- Instalação do .deb dbdeaver
+- Instalação do .deb rstudio
+- Instalação do .deb vagrant
+- Instalação do .deb vscodium
+- sudo apt install texlive-full (se for usar latex na máquina)
